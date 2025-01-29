@@ -44,7 +44,7 @@ router.get('/', async(req, res) => {
 
         const projects = await ProjectModel.find()
         if (!projects.length > 0) {
-            res.status(404).json({ message: 'projects are not available' })
+            return res.status(404).json({ message: 'projects are not available' })
         }
         res.status(200).json({ message: 'Hello world', data: projects })
     } catch (error) {
@@ -57,7 +57,7 @@ router.get('/:name', async(req, res) => {
         await dbConnect()
         const project = await ProjectModel.findOne({ title: req.params.name });
         if (!project) {
-            res.status(404).json({ message: 'projects are not available' })
+            return res.status(404).json({ message: 'projects are not available' })
         }
         res.status(200).json({ message: 'Hello world', data: project })
     } catch (error) {
@@ -70,7 +70,7 @@ router.delete('/:id', async(req, res) => {
         await dbConnect()
         const deleteProject = await ProjectModel.findByIdAndDelete(req.params.id)
         if (!deleteProject) {
-            res.status(404).json({ message: 'project is not available' })
+            return res.status(404).json({ message: 'project is not available' })
         }
         res.status(200).json({ message: 'deleted successfull', data: deleteProject })
 
@@ -90,7 +90,7 @@ router.put('/:id', async(req, res) => {
             }
         )
         if (!updateProject) {
-            res.status(404).json({ message: 'project is not available' })
+            return res.status(404).json({ message: 'project is not available' })
         }
         res.status(200).json({ message: 'update successfull', data: updateProject })
     } catch (error) {

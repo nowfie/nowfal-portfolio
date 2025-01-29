@@ -107,8 +107,8 @@ const ProjectPage =  () => {
         <PrimaryScroll className={'w-full'}>
           <img src={'/blog.jpg'} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>  
         </PrimaryScroll>
-        <div className="space-y-10 xl:w-[75%]">
-        {/* <div className="space-y-10 w-full"> */}
+        {/* <div className="space-y-10 xl:w-[75%]"> */}
+        <div className="space-y-10 w-full">
             <div className="info flex flex-col lg:flex-row gap-14 lg:gap-24 !my-24">
                 <InfoBox heading={'client'} value={['unityr techlabs','www.unityr.com']}/>
                 <InfoBox heading={'date'}  value={['from may 2025','to june 2025']}/>

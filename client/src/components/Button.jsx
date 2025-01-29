@@ -9,7 +9,7 @@ const Button = ({item,className}) => {
 }
 
 Button.propTypes = {
-    item:PropTypes.object.isRequired,
+    item:PropTypes.string.isRequired,
     className:PropTypes.string
 }
 

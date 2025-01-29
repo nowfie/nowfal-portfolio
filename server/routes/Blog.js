@@ -36,7 +36,7 @@ router.get('/', async(req, res) => {
 
         const blogs = await BlogModel.find()
         if (!blogs.length > 0) {
-            res.status(404).json({ message: 'Blogs are not available' })
+            return res.status(404).json({ message: 'Blogs are not available' })
         }
         res.status(200).json({ message: 'Hello world', data: blogs })
     } catch (error) {
@@ -49,7 +49,7 @@ router.get('/:name', async(req, res) => {
         await dbConnect()
         const blog = await BlogModel.findOne({ title: req.params.name });
         if (!blog) {
-            res.status(404).json({ message: 'Blogs are not available' })
+            return res.status(404).json({ message: 'Blogs are not available' })
         }
         res.status(200).json({ message: 'Hello world', data: blog })
     } catch (error) {
@@ -62,7 +62,7 @@ router.delete('/:id', async(req, res) => {
         await dbConnect()
         const deleteBlog = await BlogModel.findByIdAndDelete(req.params.id)
         if (!deleteBlog) {
-            res.status(404).json({ message: 'Blogs are not available' })
+            return res.status(404).json({ message: 'Blogs are not available' })
         }
         res.status(200).json({ message: 'update successfull', data: deleteBlog })
 
@@ -82,7 +82,7 @@ router.put('/:id', async(req, res) => {
             }
         )
         if (!updateBlog) {
-            res.status(404).json({ message: 'Blogs are not available' })
+            return res.status(404).json({ message: 'Blogs are not available' })
         }
         res.status(200).json({ message: 'update successfull', data: updateBlog })
     } catch (error) {

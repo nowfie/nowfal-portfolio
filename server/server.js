@@ -2,6 +2,10 @@ import express from 'express'
 import dotenv from 'dotenv'
 import Blog from './routes/Blog.js'
 import Project from './routes/Project.js'
+import Education from './routes/Education.js'
+import Experience from './routes/Experience.js'
+import About from './routes/About.js'
+import Skill from './routes/Skill.js'
 import cors from 'cors'
 
 dotenv.config()
@@ -20,6 +24,10 @@ app.get('/', (req, res) => {
 
 app.use('/api/blog', Blog)
 app.use('/api/project', Project)
+app.use('/api/education', Education)
+app.use('/api/experience', Experience)
+app.use('/api/skill', Skill)
+app.use('/api/about', About)
 
 const URL = process.env.URL || 'http://192.168.29.132'
 const PORT = process.env.PORT || 3000
