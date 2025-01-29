@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+* {
+  font-family: "Outfit", serif;
+  /* background-color: #000; */
+}
+
+p,ul,li{
+  font-weight:300;
+}
+
+@theme {
+  --color-primary: #CD512F;
+  --color-secondary: #18191D;
+  --color-background: #000000;
+  --color-foreground: #F0F0F0;
+  --color-middleground: #FFF7F1;
+  --color-boxground: #051819;
+  --color-heading: #D2D2D0;
+  --color-extra: #ffffffcc;
+  --color-paragraph: #d2d2d099;
+
+  --breakpoint-xxs: 375px;
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  --font-heading: Anton, serif;
+
+  --leading-xs: 3.7rem;
+  --leading-sm: 4.3rem;
+
+  --shadow-minimal: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+
+}
+
+@layer component{
+  .main {
+    @apply w-11/12 lg:w-10/12 xl:w-[80%] mx-auto transition-all duration-300 text-heading ;
+  }
+  .heading{
+    @apply text-[42px]  xl:text-[56px] leading-tight xl:leading-sm !font-heading;
+  }
+}

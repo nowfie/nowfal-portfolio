@@ -1,0 +1,36 @@
+body::-webkit-scrollbar {
+  width: 5px; /* Increased width for better visibility */
+}
+
+body::-webkit-scrollbar-track {
+  background: #000;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #CD512F;
+  border-radius: 10px;
+  border: 3px solid #CD512F;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+@keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .scrollable {
+    display: flex;
+    animation: marquee 15s linear infinite;
+    will-change: transform;
+  }
+  
+  .scrollable h1 {
+    white-space: nowrap; /* Prevent text wrapping */
+  }
