@@ -12,12 +12,12 @@ const ProjectPage =  () => {
   // const main = 'optimize your fitness journey'
   // const mainWords = main.split(' ');
 
-  const [data,setData] = useState([])
+  const [data,setData] = useState()
   const [errorMessage,setErrorMessage] = useState('')
 
   useEffect(()=>{
     axios.get(`${import.meta.env.VITE_API_URL}/project/${name}`).then((res)=>{
-      if(res.status === 200 && Array.isArray(res.data.data)){
+      if(res.status === 200){
         setData(res.data.data)
       }else{
         setErrorMessage(res.data.message || 'Unexpected response from server');
@@ -28,15 +28,21 @@ const ProjectPage =  () => {
     })
   },[name,errorMessage])
 
-
-  const DetialBox = ()=> {
-    return(
-      <div className="border p-6">
-        <h1 className=' !font-heading capitalize text-lg mb-3'>problem statement</h1>
-        <p className=' text-heading capitalize text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere rerum nostrum repellendus perspiciatis voluptatibus pariatur mollitia magnam possimus id accusamus.</p>
-      </div>
-    )
+  
+  if (!data) {
+    return <div className='pt-32 text-heaing flex justify-center items-center'>
+      <h1 className=' text-heading'>Loading..</h1>
+    </div>;
   }
+
+  // const DetialBox = ()=> {
+  //   return(
+  //     <div className="border p-6">
+  //       <h1 className=' !font-heading capitalize text-lg mb-3'>problem statement</h1>
+  //       <p className=' text-heading capitalize text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere rerum nostrum repellendus perspiciatis voluptatibus pariatur mollitia magnam possimus id accusamus.</p>
+  //     </div>
+  //   )
+  // }
 
   const Conclusion=({className})=>(
     <div className={className}>
@@ -124,7 +130,7 @@ const ProjectPage =  () => {
                 </ul>
             </div>
             <div className="details space-y-10">
-              <DetialBox/>
+              {/* <DetialBox/> */}
               <div className="problem">
                   <PrimaryScroll>
                     <h1 className=' !font-heading text-2xl uppercase mb-4'>statement</h1>

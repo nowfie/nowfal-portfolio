@@ -28,13 +28,13 @@ const BlogSection = () => {
 
   const BlogBox = ({item}) =>(
     <PrimaryScroll>
-      <Link href={`/blog/${item.title}`} className={` flex flex-col relative group gap-8`}>
+      <Link to={`/blog/${item.title}`} className={` flex flex-col relative group gap-8`}>
         <div className=" z-30 absolute top-0 flex justify-between p-5 left-0 w-full">
           <h3 className=' !bg-heading !text-background py-3 px-5 uppercase font-semibold text-xs tracking-widest rounded-full'>design</h3>
           <h3 className=' bg-background text-heading  py-3 px-5 uppercase font-semibold text-xs tracking-widest  rounded-full'>11.05.2025</h3>
         </div>
         <div className=" overflow-hidden rounded-lg">
-          <img src={'/blog.jpg'} width={700} height={700} alt='blog-image' className=' duration-300 group-hover:scale-110 w-full h-full'/>
+          <img src={'/blog.jpg'} width={700} height={700} alt='blog-image' className=' duration-300 group-hover:scale-110 group-focus:scale-110 group-active:scale-110 w-full h-full'/>
         </div>
         <div className="flex flex-col lg:flex-row justify-between gap-10">
           <div className=" lg:w-[70%] space-y-4">
@@ -42,7 +42,7 @@ const BlogSection = () => {
             <p className=' text-paragraph  capitalize leading-relaxed'>{item.description}</p>
           </div>
           <div className="hidden lg:block lg:w-[20%]">
-            <button className=' w-fit lg:w-full h-full rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8'> <FiArrowUpRight className=' duration-300 ml-auto text-4xl group-hover:rotate-45' /> read more</button>
+            <button className=' w-fit lg:w-full h-full rounded-lg group-hover:bg-primary group-focus:bg-primary group-active:bg-primary group-hover:text-heading group-focus:text-heading group-active:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8'> <FiArrowUpRight className=' duration-300 ml-auto text-4xl group-hover:rotate-45 group-focus:rotate-45 group-active:rotate-45' /> read more</button>
           </div>
         </div>
       </Link>

@@ -14,7 +14,7 @@ const AboutSection = () => {
             </PrimaryScroll>
             <PrimaryScroll className={'border-l-[4px] border-primary pl-5'} >
               <p className=' text-paragraph leading-relaxed text-base lg:w-3/4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime tempora rem unde excepturi ut nesciunt, doloribus mollitia atque sit vitae. 
-              <Link href={'/about'} className=' text-primary  underline-offset-8 italic !mt-5'> read more</Link>
+              <Link to={'/about'} className=' text-primary  underline-offset-8 italic !mt-5'> read more</Link>
                </p>
             </PrimaryScroll>
           </div>

@@ -17,7 +17,7 @@ const ServiceSection = () => {
                     </PrimaryScroll>
                 </div>
                 <PrimaryScroll className=" ">
-                    <Link to={`/service/${item.name}`} className=' rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-paragraph/10 p-5 flex flex-row-reverse items-center lg:flex-col w-fit uppercase tracking-widest text-xs font-semibold gap-5'> <FiArrowUpRight className=' duration-300 ml-auto text-lg lg:text-4xl group-hover:rotate-45' /> read more</Link>
+                    <Link to={`/service/${item.name}`} className=' rounded-lg group-hover:bg-primary group-focus:bg-primary group-active:bg-primary group-hover:text-heading group-focus:text-heading group-active:text-heading duration-300 ease-in-out bg-paragraph/10 p-5 flex flex-row-reverse items-center lg:flex-col w-fit uppercase tracking-widest text-xs font-semibold gap-5'> <FiArrowUpRight className=' duration-300 ml-auto text-lg lg:text-4xl group-hover:rotate-45 group-focus:rotate-45 group-active:rotate-45' /> read more</Link>
                 </PrimaryScroll>
             </div>
         )

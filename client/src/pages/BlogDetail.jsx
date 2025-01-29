@@ -9,11 +9,11 @@ import { useEffect, useState } from 'react'
 const BlogPage = () => {
   const { name } = useParams()
 
-  const [data,setData] = useState([])
+  const [data,setData] = useState()
   const [errorMessage,setErrorMessage] = useState('')
   useEffect(()=>{
     axios.get(`${import.meta.env.VITE_API_URL}/blog/${name}`).then((res)=>{
-      if(res.status === 200 && Array.isArray(res.data.data)){
+      if(res.status === 200){
         setData(res.data.data)
       }else{
         setErrorMessage(res.data.message || 'Unexpected response from server');
@@ -23,6 +23,13 @@ const BlogPage = () => {
       console.error('API Error:', errorMessage || error);
     })
   },[name,errorMessage])
+
+  
+  if (!data) {
+    return <div className='pt-32 text-heaing flex justify-center items-center'>
+      <h1 className=' text-heading'>Loading..</h1>
+    </div>;
+  }
   
   return (
     <section className=' space-y-2'>
@@ -33,7 +40,7 @@ const BlogPage = () => {
             </PrimaryScroll>
             <div className="xl:w-[75%]">
             {/* <div className=" w-full"> */}
-              <BlogDetailSection data={data}/>
+            <BlogDetailSection data={data}/>
             </div>
         </div>
       <BlogSection/>

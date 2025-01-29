@@ -7,7 +7,9 @@ import ServiceDetail from './pages/ServiceDetail'
 import { AnimatePresence,motion } from 'framer-motion'
 import Project from './pages/Project'
 import ProjectDetail from './pages/ProjectDetail'
+import BlogDetail from './pages/BlogDetail'
 import ScrollToTop from './components/ScrollToTop'
+import About from './pages/About'
 
 function App() {
   const location = useLocation()
@@ -27,9 +29,11 @@ function App() {
           >
             <Routes location={location}>
             <Route path='/' element={<Home title='home'/>}/>
+            <Route path='/about' element={<About title='about'/>}/>
             <Route path='/project' element={<Project title='project'/>}/>
-            <Route path='/project/:name' element={<ProjectDetail title='service'/>}/>
-            <Route path='/service/:name' element={<ServiceDetail title='service'/>}/>
+            <Route path='/project/:name' element={<ProjectDetail title='project detail'/>}/>
+            <Route path='/service/:name' element={<ServiceDetail title='service detail'/>}/>
+            <Route path='/blog/:name' element={<BlogDetail title='blog detail'/>}/>
           </Routes>
           <Footer/>
           </motion.div>
