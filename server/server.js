@@ -10,7 +10,6 @@ import Skill from './routes/Skill.js'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import nodemailer from 'nodemailer'
 import mailFunction from './routes/SendMail.js'
 
 dotenv.config({ path: '.env.development' })
@@ -33,9 +32,11 @@ app.get('/', (req, res) => {
     }
 })
 
-app.post('/api/mail', (req, res) => {
+app.post('/api/mail', async(req, res) => {
     const { name, email, phone, service, message } = req.body
-    mailFunction(name, email, phone, service, message)
+    const response = await mailFunction(name, email, service, message, phone);
+
+    return res.status(response.status).json({ message: response.message });
 })
 
 app.use('/api/blog', Blog)

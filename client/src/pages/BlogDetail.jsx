@@ -38,8 +38,8 @@ const BlogPage = () => {
             <PrimaryScroll className={'w-full'}>
               <img src={`${import.meta.env.VITE_API_URL}/${data.image}`} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>
             </PrimaryScroll>
-            <div className="xl:w-[75%] w-full">
-            {/* <div className=" w-full"> */}
+            {/* <div className="xl:w-[75%] w-full"> */}
+            <div className=" w-full">
             <BlogDetailSection data={data}/>
             </div>
         </div>

@@ -52,22 +52,34 @@ const About = () => {
 
 
   const AboutDetailSection = () =>{
+    const [record,setRecord] = useState('')
+
+    useEffect(()=>{
+      axios.get(`${import.meta.env.VITE_API_URL}/about/record`).then((res)=>{
+        if (res.status === 200) {
+          setRecord(res.data.data)
+          console.log('API error ',res.data.message)
+        }
+      }).catch((error)=>{
+        console.log('API error ',error)
+      })
+    },[])
 
     const RecordRow = () => {
-        const recordData = [
-          {
-              number: 20,
-              text: 'prototypes completed'
-          },
-          {
-              number: '06',
-              text: 'solution delivered'
-          },
-          {
-              number: 30,
-              text: 'technologies known'
-          },
-        ]
+      const recordData = [
+        {
+            number: record.project || 25,
+            text: 'solution delivered'
+        },
+        {
+            number: record.skill || 30,
+            text: 'technologies known'
+        },
+        {
+            number: record.award || 2,
+            text: 'achievements numbers'
+        },
+      ]
       return (
         <section className="  overflow-x-hidden pt-12 pb-12 lg:pb-16">
             <div className=" grid grid-cols-1 gap-10 md:gap-20 lg:gap-3 xl:gap-5 md:grid-cols-3">
@@ -142,10 +154,14 @@ const About = () => {
               <p className=' text-paragraph leading-relaxed text-base '>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects</p>
             </div> */}
              <div className=" flex flex-col md:flex-row justify-baseline gap-10">
-                <div className=" lg:w-1/4 relative">
-                    <img src={`${import.meta.env.VITE_API_URL}/${item.image}`} className=" absolute w-full h-full rounded-lg" alt="" />
-                </div>
-                <div className="lg:w-3/4 space-y-3">
+             <div className="md:w-[40%] lg:w-1/4 h-[8rem] relative flex items-center md:m-auto justify-center overflow-hidden rounded-lg">
+                <img 
+                  src={`${import.meta.env.VITE_API_URL}/${item.image}`} 
+                  className="w-full h-full object-cover md:m-auto absolute rounded-lg" 
+                  alt="" 
+                />
+              </div>
+                <div className="md:w-[60%] lg:w-3/4 space-y-3">
                   <h1 className=" text-heading uppercase text-2xl !font-heading">{item.degree}</h1>
                   <p className=' text-paragraph leading-relaxed text-base '>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects who you are and what you stand for, but words that truly land with those that read them, calling your audience in and making them want more. </p>
                 </div>
@@ -169,10 +185,14 @@ const About = () => {
             </div>
             <div className=" p-[.5px] bg-paragraph/30 w-full !my-10"></div>
             <div className=" flex flex-col md:flex-row justify-baseline gap-10">
-                <div className=" lg:w-1/4 relative">
-                  <img src={`${import.meta.env.VITE_API_URL}/${item.image}`} className=" absolute w-full h-full rounded-lg" alt="" />
-                </div>
-                <div className="lg:w-3/4 space-y-3">
+              <div className="md:w-[40%] lg:w-1/4 h-[8rem] relative flex items-center md:m-auto justify-center overflow-hidden rounded-lg">
+                <img 
+                  src={`${import.meta.env.VITE_API_URL}/${item.image}`} 
+                  className="w-full h-full object-cover md:m-auto absolute rounded-lg" 
+                  alt="" 
+                />
+              </div>
+                <div className="md:w-[60%] lg:w-3/4 space-y-3">
                   <h1 className=" text-heading uppercase text-2xl !font-heading">{item.role}</h1>
                   <p className=' text-paragraph leading-relaxed text-base '>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects who you are and what you stand for, but words that truly land with those that read them, calling your audience in and making them want more. </p>
                 </div>
@@ -196,10 +216,14 @@ const About = () => {
             </div>
             <div className=" p-[.5px] bg-paragraph/30 w-full !my-10"></div>
           <div className=" flex flex-col md:flex-row justify-baseline gap-10">
-            <div className=" lg:w-1/4 relative">
-              <img src={`${import.meta.env.VITE_API_URL}/${item.image}`} className=" absolute w-full h-full rounded-lg" alt="" />
+            <div className="md:w-[40%] lg:w-1/4 h-[8rem] relative flex items-center md:m-auto justify-center overflow-hidden rounded-lg">
+              <img 
+                src={`${import.meta.env.VITE_API_URL}/${item.image}`} 
+                className="w-full h-full object-cover md:m-auto absolute rounded-lg" 
+                alt="" 
+              />
             </div>
-            <div className="lg:w-3/4 space-y-3">
+            <div className="md:w-[60%] lg:w-3/4 space-y-3">
               <h1 className=" text-heading uppercase text-2xl !font-heading">{item.name}</h1>
               <p className=' text-paragraph leading-relaxed text-base '>{item.description}</p>
             </div>
@@ -228,10 +252,10 @@ const About = () => {
       //border-l-[4px] border-primary pl-5
       return(
         <PrimaryScroll delay={index/10} className=" justify-between bg-paragraph/10 flex flex-col lg:flex-row gap-16 p-8 md:p-10 rounded-lg ">
-            <div className="lg:w-[30%] hidden lg:block">
+            <div className="lg:w-[30%] ">
               <div className=" w-full border-l-[4px]  border-primary pl-5 h-full relative overflow-hidden ">
-                <div className="lg:w-[75%]  h-[250px] xxs:h-[300px] xs:h-[400px] lg:h-full !bg-background/40 relative !rounded-xl">
-                  <img src="/hero.png" className=" grayscale-50 rotate-[3deg]  absolute w-fit -top-10  lg:h-fit mx-auto" alt="" />
+                <div className="lg:w-[75%] md:m-auto justify-center xl:justify-normal flex h-[250px] xxs:h-[300px] xs:h-[400px] md:h-[500px] lg:h-full !bg-background/40 relative !rounded-xl">
+                  <img src="/hero.png" className=" grayscale-50 rotate-[3deg] absolute w-fit -top-10 lg:top-0 xl:-top-10  lg:h-fit mx-auto" alt="" />
                 </div>
               </div>
             </div>
@@ -413,11 +437,19 @@ const About = () => {
                       </PrimaryScroll>
                   </div>
                   <div className="lg:w-[70%] relative">
-                      <div className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto">
+                      <AnimatePresence mode='wait'>
+                      <motion.div 
+                      key={select} 
+                      initial={{opacity:0}}
+                      animate={{opacity:1}}
+                      exit={{opacity:0}}
+                      transition={{duration:.5,delay:.2}}
+                      className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto">
                           {filteredSkill&&filteredSkill.map((item,index)=>(
                               <SkillBox name={item.name} icon={item.Icon}  index={index} key={index}/>
                           ))}
-                      </div>
+                      </motion.div>
+                      </AnimatePresence>
                       {/* <h4 className=' italic text-primary capitalize absolute right-0 -bottom-5 text-xs lg:bottom-0'>scroll down</h4> */}
                   </div>
               </div>

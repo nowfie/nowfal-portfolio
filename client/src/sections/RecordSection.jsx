@@ -1,22 +1,57 @@
+import { useEffect, useState } from "react"
 import PrimaryScroll from "../animations/PrimaryScroll"
+import axios from "axios"
 
 const RecordSection = () => {
+
+  const [data,setData] = useState('')
+
+  useEffect(()=>{
+    axios.get(`${import.meta.env.VITE_API_URL}/about/record`).then((res)=>{
+      if (res.status === 200) {
+        setData(res.data.data)
+      }else{
+        console.log('API error ',res.data.message)
+      }
+    }).catch((error)=>{
+      console.log('API error ',error)
+    })
+  },[])
+
+  const [expYear,setExpYear] = useState('')
+  const calculateYearsOfExperience = () => {
+    const birthDate = new Date(2022, 4, 11); 
+    const today = new Date();
+    let yearsOfExperience = today.getFullYear() - birthDate.getFullYear();
+
+    const thisYearMay11 = new Date(today.getFullYear(), 4, 11);
+    if (today < thisYearMay11) {
+      yearsOfExperience--;
+    }
+
+    setExpYear(yearsOfExperience)
+  };
+
+  useEffect(()=>{
+    calculateYearsOfExperience();
+  },[expYear])
+
     const recordData = [
       {
-        number: '02',
+        number: expYear > 9 ? expYear : '0'+expYear,
         text: 'years experience'
       },
       {
-          number: 20,
-          text: 'prototypes completed'
-      },
-      {
-          number: '06',
+          number: data.project > 9? data.project : '0'+data.project || 25,
           text: 'solution delivered'
       },
       {
-          number: 30,
+          number: data.skill > 9? data.skill : '0'+data.skill || 30,
           text: 'technologies known'
+      },
+      {
+          number: data.award > 9? data.award : '0'+data.award || 2,
+          text: 'achievements numbers'
       },
     ]
   return (

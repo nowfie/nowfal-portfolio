@@ -2,6 +2,8 @@ import { Router } from "express";
 import dbConnect from "../lib/dbConnect.js";
 import ExperienceModel from "../models/ExperienceModel.js";
 import EducationModel from "../models/EducationModel.js";
+import ProjectModel from "../models/ProjectModel.js";
+import SkillModel from "../models/SkillModel.js";
 import AwardModel from "../models/AwardModel.js";
 
 
@@ -24,6 +26,26 @@ router.get('/', async(req, res) => {
             award: award.length > 0 ? award : 'please add the award detail'
         }
         res.status(200).json({ message: 'success', data: timelineData })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+router.get('/record', async(req, res) => {
+    try {
+        await dbConnect()
+        const skills = await SkillModel.find()
+        const projects = await ProjectModel.find()
+        const awards = await AwardModel.find()
+
+        const recordData = {
+            skill: skills.length > 0 ? skills.length : 'please add the skills',
+            project: projects.length > 0 ? projects.length : 'please add the project',
+            award: awards.length > 0 ? awards.length : 'please add the awards detail'
+        }
+
+        res.status(200).json({ message: 'success', data: recordData })
+
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

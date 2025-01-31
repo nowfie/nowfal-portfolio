@@ -50,8 +50,8 @@ const ServiceDetail = () => {
             <img src={'/blog.jpg'} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>  
           </PrimaryScroll>
           <div className="flex flex-col justify-center items-center">
-            {/* <div className=" space-y-10"> */}
-            <div className="xl:w-[75%] space-y-10">
+            <div className=" w-full space-y-10">
+            {/* <div className="xl:w-[75%] space-y-10"> */}
               <div className="description">
                 <PrimaryScroll>
                   <h1 className=' !font-heading text-2xl uppercase mb-4'>{service.title}</h1>
