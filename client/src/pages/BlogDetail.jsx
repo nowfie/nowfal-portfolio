@@ -36,9 +36,9 @@ const BlogPage = () => {
         <Header name={name} description={''}/>
         <div className="main !mb-24 flex flex-col justify-center items-center gap-14">
             <PrimaryScroll className={'w-full'}>
-              <img src={'/blog.jpg'} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>
+              <img src={`${import.meta.env.VITE_API_URL}/${data.image}`} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>
             </PrimaryScroll>
-            <div className="xl:w-[75%]">
+            <div className="xl:w-[75%] w-full">
             {/* <div className=" w-full"> */}
             <BlogDetailSection data={data}/>
             </div>

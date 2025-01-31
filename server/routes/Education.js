@@ -1,22 +1,36 @@
 import express, { Router } from 'express'
 import dbConnect from '../lib/dbConnect.js'
 import EducationModel from '../models/EducationModel.js'
+import multer from 'multer';
 
 const router = Router()
 
-router.post('/', async(req, res) => {
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/education');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+router.post('/', upload.single('image'), async(req, res) => {
     try {
         await dbConnect()
-        const { duration, institution, degree } = await req.body
+        const image = req.file.path
+        const { duration, institution, degree, description } = await req.body
 
-        if (!duration || !institution || !degree) {
+        if (!duration || !institution || !degree || !description || !image) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
         }
 
         const newEducation = new EducationModel({
             duration,
             institution,
-            degree
+            degree,
+            description,
+            image
         });
 
         await newEducation.save()

@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
 
 const SkillSchema = mongoose.Schema({
+    category: {
+        type: String,
+        required: [true, 'Please provide a project category'],
+        enum: ['language', 'frontend', 'backend', 'database', 'aiml', 'others'],
+    },
     name: {
         type: String,
         required: [true, 'please provide a title'],

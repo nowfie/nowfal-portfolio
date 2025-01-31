@@ -29,7 +29,7 @@ const BlogSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-    },
+    }
 })
 
 export default mongoose.models.Blog || mongoose.model('Blog', BlogSchema)

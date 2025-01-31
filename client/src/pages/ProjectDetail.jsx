@@ -87,9 +87,19 @@ const ProjectPage =  () => {
         <PrimaryScroll className=" space-y-6">
             <h1 className=' !font-heading text-heading uppercase text-2xl'>{heading}</h1>
             <ul className=' space-y-1 text-paragraph font-light '>
-                {value.map((item,index)=>(
-                    <li key={index} className={`${heading =='client' && index==1?' text-primary':'capitalize'}`}>{item}</li>
-                ))}
+                {heading == 'client'?(
+                    value.map((item,index)=>(
+                      <li key={index} className={`${heading =='client' && index==1?' text-primary':'capitalize'}`}>{item}</li>
+                  ))
+                ):heading =='date'?(
+                  value.map((item,index)=>(
+                    <li key={index} className={`${heading =='client' && index==1?' text-primary':'capitalize'}`}> {item == value[0]?'from':'to'} {item}</li>
+                ))
+                ):(
+                  value.map((item,index)=>(
+                    <li key={index} className={``}>{item}</li>
+                ))
+                )}
             </ul>
         </PrimaryScroll>
     )
@@ -97,7 +107,7 @@ const ProjectPage =  () => {
 
   InfoBox.propTypes = {
     heading: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.array
   }
 
   return (
@@ -105,14 +115,14 @@ const ProjectPage =  () => {
       <Header name={name} description={''}/>
       <div className="main flex flex-col justify-center space-y-14 items-center">
         <PrimaryScroll className={'w-full'}>
-          <img src={'/blog.jpg'} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>  
+          <img src={`${import.meta.env.VITE_API_URL}/${data.image}`} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>  
         </PrimaryScroll>
         {/* <div className="space-y-10 xl:w-[75%]"> */}
         <div className="space-y-10 w-full">
             <div className="info flex flex-col lg:flex-row gap-14 lg:gap-24 !my-24">
-                <InfoBox heading={'client'} value={['unityr techlabs','www.unityr.com']}/>
-                <InfoBox heading={'date'}  value={['from may 2025','to june 2025']}/>
-                <InfoBox heading={'executors'}  value={['mohammed nowfal','gopika']}/>
+                <InfoBox heading={'client'} value={[data.client,data.link]}/>
+                <InfoBox heading={'date'}  value={[data.dateFrom,data.dateTo]}/>
+                <InfoBox heading={'executors'}  value={data.executors}/>
             </div>
             {/* <div className="sologan-info ">
                 <h1 className=' !font-heading text-4xl text-heading uppercase'>about <span className=' !font-heading text-primary'>project</span></h1>

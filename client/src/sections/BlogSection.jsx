@@ -26,7 +26,8 @@ const BlogSection = () => {
     });
   },[])
 
-  const BlogBox = ({item}) =>(
+  const BlogBox = ({item}) =>{
+    return(
     <PrimaryScroll>
       <Link to={`/blog/${item.title}`} className={` flex flex-col relative group gap-8`}>
         <div className=" z-30 absolute top-0 flex justify-between p-5 left-0 w-full">
@@ -34,20 +35,20 @@ const BlogSection = () => {
           <h3 className=' bg-background text-heading  py-3 px-5 uppercase font-semibold text-xs tracking-widest  rounded-full'>11.05.2025</h3>
         </div>
         <div className=" overflow-hidden rounded-lg">
-          <img src={'/blog.jpg'} width={700} height={700} alt='blog-image' className=' duration-300 group-hover:scale-110 group-focus:scale-110 group-active:scale-110 w-full h-full'/>
+          <img src={`${import.meta.env.VITE_API_URL}/${item.image}`} width={700} height={700} alt='blog-image' className=' duration-300 group-hover:scale-110 group-focus:scale-110 group-active:scale-110 w-full h-full'/>
         </div>
         <div className="flex flex-col lg:flex-row justify-between gap-10">
           <div className=" lg:w-[70%] space-y-4">
             <h1 className=' !font-heading text-2xl uppercase text-heading'>{item.title}</h1>
             <p className=' text-paragraph  capitalize leading-relaxed'>{item.description}</p>
           </div>
-          <div className="hidden lg:block lg:w-[20%]">
+          <div className="hidden lg:block lg:w-[25%]">
             <button className=' w-fit lg:w-full h-full rounded-lg group-hover:bg-primary group-focus:bg-primary group-active:bg-primary group-hover:text-heading group-focus:text-heading group-active:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8'> <FiArrowUpRight className=' duration-300 ml-auto text-4xl group-hover:rotate-45 group-focus:rotate-45 group-active:rotate-45' /> read more</button>
           </div>
         </div>
       </Link>
     </PrimaryScroll>
-  )
+  )}
 
   BlogBox.propTypes = {
     index:PropTypes.number,
@@ -85,11 +86,12 @@ const BlogSection = () => {
               1024: {
                 slidesPerView: 2,
               },
+              //!h-[25rem] md:!h-[35rem] lg:!h-[27rem] xl:!h-full
             }}
             className=" !overflow-visible"
           >
             {data.map((item, index) => (
-              <SwiperSlide key={index} className=' !h-[25rem] md:!h-[35rem] lg:!h-[27rem] xl:!h-full !overflow-hidden'>
+              <SwiperSlide key={index} className='  !overflow-hidden'>
                 <BlogBox item={item} />
               </SwiperSlide>
             ))}

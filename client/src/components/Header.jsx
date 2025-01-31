@@ -16,7 +16,7 @@ const Header = ({name,description}) => {
         }}
       ></div>
         <div className="main !z-30 relative  space-y-10 ">
-            <h3 className='  text-center text-xs text-paragraph uppercase font-semibold tracking-widest flex gap-4 mx-auto w-fit'> <Link href={'/'}>home</Link>   <span>/</span>   <span className=' text-primary'>{sub}</span></h3>
+            <h3 className='  text-center text-xs text-paragraph uppercase font-semibold tracking-widest flex gap-4 mx-auto w-fit'> <Link to={'/'}>home</Link>   <span>/</span>   <span className=' text-primary'>{sub}</span></h3>
             <h1 className=' !font-heading text-6xl uppercase leading-sm mb-4 text-center font-extrabold '>
                 {decodedName}
                 {/* how to become a graphiq designer in simple steps */}

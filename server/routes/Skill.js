@@ -7,16 +7,17 @@ const router = Router()
 router.post('/', async(req, res) => {
     try {
         await dbConnect()
-        const { name, iconFamily, iconName } = await req.body
+        const { name, iconFamily, iconName, category } = await req.body
 
-        if (!name || !iconFamily || !iconName) {
+        if (!name || !iconFamily || !iconName || !category) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
         }
 
         const newSkill = new SkillModel({
             name,
             iconFamily,
-            iconName
+            iconName,
+            category
         });
 
         await newSkill.save()

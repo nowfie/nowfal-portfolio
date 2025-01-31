@@ -1,22 +1,36 @@
 import express, { Router } from 'express'
 import dbConnect from '../lib/dbConnect.js'
 import ExperienceModel from '../models/ExperienceModel.js'
+import multer from 'multer';
 
 const router = Router()
 
-router.post('/', async(req, res) => {
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/experience');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+router.post('/', upload.single('image'), async(req, res) => {
     try {
         await dbConnect()
-        const { duration, company, role } = await req.body
+        const image = req.file.path
+        const { duration, company, role, description } = await req.body
 
-        if (!duration || !company || !role) {
+        if (!duration || !company || !role || !description || !image) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
         }
 
         const newExperience = new ExperienceModel({
             duration,
             company,
-            role
+            role,
+            description,
+            image
         });
 
         await newExperience.save()

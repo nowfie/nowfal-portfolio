@@ -1,42 +1,95 @@
 import express, { Router } from 'express'
 import dbConnect from '../lib/dbConnect.js'
 import ProjectModel from '../models/ProjectModel.js'
+import multer from 'multer';
 
 const router = Router()
 
-router.post('/', async(req, res) => {
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/project');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+function safeParse(jsonString) {
     try {
-        await dbConnect()
+        return typeof jsonString === 'string' ? JSON.parse(jsonString) : jsonString;
+    } catch (e) {
+        return null; // Return null if parsing fails
+    }
+}
+
+router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoImages', maxCount: 5 }]), async(req, res) => {
+    try {
+        await dbConnect();
+
+        const image = req.files['image'] ? req.files['image'][0].path : null;
+        const demoImages = req.files['demoImages'] ? req.files['demoImages'].map(file => file.path) : [];
+
         const {
             title,
             description,
+            client,
+            link,
+            dateFrom,
+            dateTo,
+            executors,
             category,
             details,
             statement,
             technologyStack: { paragraph, stack: { languages, frontend, backend, database, others } },
             conclusion
-        } = await req.body
+        } = req.body;
 
-        if (!title || !category || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion) {
-            return res.status(400).json({ message: 'Please provide all required fields' })
+        if (!title || !category || !image || !demoImages.length || !client || !executors || !link || !dateFrom || !dateTo || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion) {
+            return res.status(400).json({ message: 'Please provide all required fields' });
         }
+
+        const parsedExecutors = safeParse(executors);
+        const parsedDetails = safeParse(details);
+        const parsedLanguages = safeParse(languages);
+        const parsedFrontend = safeParse(frontend);
+        const parsedBackend = safeParse(backend);
+        const parsedDatabase = safeParse(database);
+        const parsedOthers = safeParse(others);
 
         const newProject = new ProjectModel({
             title,
             description,
+            client,
+            link,
+            executors: parsedExecutors || executors,
+            dateFrom,
+            image,
+            demoImages,
+            dateTo,
             category,
-            details,
+            details: parsedDetails || details,
             statement,
-            technologyStack: { paragraph, stack: { languages, frontend, backend, database, others } },
+            technologyStack: {
+                paragraph,
+                stack: {
+                    languages: parsedLanguages || languages,
+                    frontend: parsedFrontend || frontend,
+                    backend: parsedBackend || backend,
+                    database: parsedDatabase || database,
+                    others: parsedOthers || others
+                }
+            },
             conclusion
         });
 
-        await newProject.save()
-        res.status(201).json({ message: 'Successfully created', data: newProject })
+        await newProject.save();
+        res.status(201).json({ message: 'Successfully created', data: newProject });
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: error.message });
     }
-})
+});
+
 
 router.get('/', async(req, res) => {
     try {

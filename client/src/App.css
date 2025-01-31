@@ -34,3 +34,146 @@ body::-webkit-scrollbar-thumb:hover {
   .scrollable h1 {
     white-space: nowrap; /* Prevent text wrapping */
   }
+
+  /* Custom Scrollbar Styles */
+.skill-scrolls {
+  overflow-y: auto;
+}
+
+.skill-scrolls::-webkit-scrollbar {
+  width: 5px; /* Increased width for better visibility */
+}
+
+.skill-scrolls::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.skill-scrolls::-webkit-scrollbar-thumb {
+  background-color: #CD512F;
+  border-radius: 10px;
+  border: 3px solid #CD512F;
+}
+
+.skill-scrolls::-webkit-scrollbar-thumb:hover {
+  background: transparent;
+}
+
+
+@media only screen and (min-width: 310px) and (max-width: 375px) {
+  .logo h1 {
+      font-size: 1.7rem !important;
+  }
+  .hero-content h1 {
+      font-size: 2.5rem;
+  }
+  p {
+      font-size: 16px !important;
+  }
+  .hero-btn-links a {
+      font-size: 1.3rem;
+  }
+  .experience-data-grid-container {
+      max-height: 27% !important;
+  }
+  .resume-dummy {
+      max-height: 390px !important;
+      padding-right: 5px;
+  }
+   ::-webkit-scrollbar {
+      width: 3px;
+  }
+  .hero-inner-image img {
+      width: 70% !important;
+      rotate: 3.6deg;
+      position: relative;
+      top: 6px !important;
+      filter: brightness(1);
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 767px) {
+  .logo h1 {
+      font-size: 1.8rem !important;
+  }
+  .hero-content h1 {
+      font-size: 3rem;
+  }
+  .hero-content h3 {
+      font-size: 1.3rem;
+  }
+  .resume-dummy {
+      max-height: 430px !important;
+      padding-right: 6px;
+  }
+   ::-webkit-scrollbar {
+      width: 3px;
+  }
+  .hero-inner-image img {
+      width: 68% !important;
+      rotate: 3.6deg;
+      position: relative;
+      top: 8px !important;
+      filter: brightness(1);
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .resume-dummy {
+      max-height: 340px !important;
+  }
+  .hero-inner-image img {
+      width: 70% !important;
+      rotate: 3.6deg;
+      position: relative;
+      top: 23px !important;
+      filter: brightness(1);
+  }
+  .work-image {
+      height: 500px !important;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .resume-dummy {
+      max-height: 380px !important;
+      padding-right: 8px !important;
+  }
+  .hero-inner-image img {
+      width: 52% !important;
+      padding: 10px !important;
+      rotate: 3.6deg;
+      position: relative;
+      top: 7px !important;
+      left: 55px !important;
+      filter: brightness(1);
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width:1399px) {
+  .hero-inner-image img {
+      width: 48% !important;
+      rotate: 3.6deg;
+      position: relative;
+      left: 65px !important;
+      top: 0px !important;
+      filter: brightness(1);
+  }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 2299px) {
+  .nav-items {
+      font-size: 14.5px !important;
+  }
+  .resume-dummy {
+      max-height: 340px !important;
+      padding-right: 10px !important;
+  }
+  .hero-inner-image img {
+      width: 45% !important;
+      rotate: 3.6deg;
+      position: relative;
+      left: 65px !important;
+      top: 0px !important;
+      filter: brightness(1);
+  }
+}

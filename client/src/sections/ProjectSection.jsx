@@ -42,7 +42,7 @@ const ProjectSection = () => {
           </div>
           <div style={{ background: 'linear-gradient(to bottom, transparent 0%, black 100%)' }} className="black-shade p-12 !z-10 duration-300 absolute bottom-0 left-0 w-full translate-y-52 group-hover:translate-y-0 group-focus:translate-y-0 group-active:translate-y-0" />
           <img
-            src={`/1-s(${index + 1}).jpg`}
+            src={`${import.meta.env.VITE_API_URL}/${item.image}`}
             alt={`Project ${index + 1} image`}
             width={1000}
             height={1000}

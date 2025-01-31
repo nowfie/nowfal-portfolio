@@ -4,15 +4,24 @@ import Blog from './routes/Blog.js'
 import Project from './routes/Project.js'
 import Education from './routes/Education.js'
 import Experience from './routes/Experience.js'
+import Award from './routes/Award.js'
 import About from './routes/About.js'
 import Skill from './routes/Skill.js'
 import cors from 'cors'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 dotenv.config()
 
 const app = express()
 app.use(cors())
 app.use(express.json())
+
+const __filename = fileURLToPath(
+    import.meta.url)
+const __dirname = path.dirname(__filename)
+
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')))
 
 app.get('/', (req, res) => {
     try {
@@ -27,6 +36,7 @@ app.use('/api/project', Project)
 app.use('/api/education', Education)
 app.use('/api/experience', Experience)
 app.use('/api/skill', Skill)
+app.use('/api/award', Award)
 app.use('/api/about', About)
 
 const URL = process.env.URL || 'http://192.168.29.132'

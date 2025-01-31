@@ -1,13 +1,25 @@
 import express, { Router } from 'express'
 import dbConnect from '../lib/dbConnect.js'
 import BlogModel from '../models/BlogModel.js'
+import multer from 'multer';
 
 const router = Router()
 
-router.post('/', async(req, res) => {
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/blog');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+router.post('/', upload.single('image'), async(req, res) => {
     try {
         await dbConnect()
-        const { title, description, content, message, conclusion, image, date } = await req.body
+        const image = req.file.path
+        const { title, description, content, message, conclusion, date } = await req.body
 
         if (!title || !description || !image || !date) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
@@ -16,7 +28,7 @@ router.post('/', async(req, res) => {
         const newBlog = new BlogModel({
             title,
             description,
-            content,
+            content: JSON.parse(content),
             message,
             conclusion,
             image,
