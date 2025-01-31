@@ -10,8 +10,10 @@ import Skill from './routes/Skill.js'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import nodemailer from 'nodemailer'
+import mailFunction from './routes/SendMail.js'
 
-dotenv.config()
+dotenv.config({ path: '.env.development' })
 
 const app = express()
 app.use(cors())
@@ -31,6 +33,11 @@ app.get('/', (req, res) => {
     }
 })
 
+app.post('/api/mail', (req, res) => {
+    const { name, email, phone, service, message } = req.body
+    mailFunction(name, email, phone, service, message)
+})
+
 app.use('/api/blog', Blog)
 app.use('/api/project', Project)
 app.use('/api/education', Education)
@@ -39,8 +46,8 @@ app.use('/api/skill', Skill)
 app.use('/api/award', Award)
 app.use('/api/about', About)
 
-const URL = process.env.URL || 'http://192.168.29.132'
-const PORT = process.env.PORT || 3000
+const URL = process.env.URL
+const PORT = process.env.PORT
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server listening on ${URL}:${PORT}`)
 })

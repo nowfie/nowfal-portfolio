@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from 'dotenv';
 
+dotenv.config({ path: '.env.development' });
 const dbConnect = () => {
-    mongoose.connect('mongodb://localhost:27017/nowfal-portfolio').then(() => {
+    mongoose.connect(process.env.MONGODB_URI).then(() => {
         console.log('Connection established')
     }).catch((error) => {
         console.log(error)
