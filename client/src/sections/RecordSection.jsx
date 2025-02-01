@@ -42,16 +42,16 @@ const RecordSection = () => {
         text: 'years experience'
       },
       {
-          number: data.project > 9? data.project : '0'+data.project || 25,
+          number:  typeof(data.project) != 'number'? 27 : data.project > 9 ? data.project : '0'+ data.project,
           text: 'solution delivered'
       },
       {
-          number: data.skill > 9? data.skill : '0'+data.skill || 30,
-          text: 'technologies known'
-      },
+          number:  typeof(data.award) != 'number'? '0'+3 : data.award > 9 ? data.award : '0'+ data.award,
+          text: 'awards numbers'
+      }, 
       {
-          number: data.award > 9? data.award : '0'+data.award || 2,
-          text: 'achievements numbers'
+        number:  typeof(data.skill) != 'number'? 30 : data.skill > 9 ? data.skill : '0'+ data.skill,
+        text: 'technologies known'
       },
     ]
   return (

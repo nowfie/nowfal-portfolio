@@ -48,7 +48,7 @@ router.get('/', async(req, res) => {
         if (!Experience.length > 0) {
             return res.status(404).json({ message: 'Experience are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Experience })
+        res.status(200).json({ message: 'education fetched succesfully', data: Experience })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -61,7 +61,7 @@ router.get('/:id', async(req, res) => {
         if (!Experience) {
             return res.status(404).json({ message: 'Experience are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Experience })
+        res.status(200).json({ message: `${req.params.id} fetched succesfully`, data: Experience })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -74,7 +74,7 @@ router.delete('/:id', async(req, res) => {
         if (!deleteExperience) {
             return res.status(404).json({ message: 'Experience are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: deleteExperience })
+        res.status(200).json({ message: 'deleted successfull', data: deleteExperience })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -94,7 +94,7 @@ router.put('/:id', async(req, res) => {
         if (!updateExperience) {
             return res.status(404).json({ message: 'Experience are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateExperience })
+        res.status(200).json({ message: 'updated successfull', data: updateExperience })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

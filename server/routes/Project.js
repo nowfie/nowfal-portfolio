@@ -99,7 +99,7 @@ router.get('/', async(req, res) => {
         if (!projects.length > 0) {
             return res.status(404).json({ message: 'projects are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: projects })
+        res.status(200).json({ message: 'project fetched succesfully', data: projects })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -112,7 +112,7 @@ router.get('/:name', async(req, res) => {
         if (!project) {
             return res.status(404).json({ message: 'projects are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: project })
+        res.status(200).json({ message: `${req.params.name} project fetched succesfully`, data: project })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -145,7 +145,7 @@ router.put('/:id', async(req, res) => {
         if (!updateProject) {
             return res.status(404).json({ message: 'project is not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateProject })
+        res.status(200).json({ message: 'updated successfull', data: updateProject })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

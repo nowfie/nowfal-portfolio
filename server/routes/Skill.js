@@ -35,7 +35,7 @@ router.get('/', async(req, res) => {
         if (!Skill.length > 0) {
             return res.status(404).json({ message: 'Skill are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Skill })
+        res.status(200).json({ message: 'skills fetched succesfully', data: Skill })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -48,7 +48,7 @@ router.get('/:id', async(req, res) => {
         if (!Skill) {
             return res.status(404).json({ message: 'Skill are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Skill })
+        res.status(200).json({ message: `${req.params.id} fetched succesfully`, data: Skill })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -61,7 +61,7 @@ router.delete('/:id', async(req, res) => {
         if (!deleteSkill) {
             return res.status(404).json({ message: 'Skill are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: deleteSkill })
+        res.status(200).json({ message: 'deleted successfull', data: deleteSkill })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -81,7 +81,7 @@ router.put('/:id', async(req, res) => {
         if (!updateSkill) {
             return res.status(404).json({ message: 'Skill are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateSkill })
+        res.status(200).json({ message: 'updated successfull', data: updateSkill })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

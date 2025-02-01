@@ -47,7 +47,7 @@ router.get('/', async(req, res) => {
         if (!Award.length > 0) {
             return res.status(404).json({ message: 'Award are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Award })
+        res.status(200).json({ message: 'award fetched succesfully', data: Award })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -60,7 +60,7 @@ router.get('/:id', async(req, res) => {
         if (!Award) {
             return res.status(404).json({ message: 'Award are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: Award })
+        res.status(200).json({ message: `${req.params.id} fetched succesfully`, data: Award })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -73,7 +73,7 @@ router.delete('/:id', async(req, res) => {
         if (!deleteAward) {
             return res.status(404).json({ message: 'Award are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: deleteAward })
+        res.status(200).json({ message: 'deleted successfull', data: deleteAward })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -93,7 +93,7 @@ router.put('/:id', async(req, res) => {
         if (!updateAward) {
             return res.status(404).json({ message: 'Award are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateAward })
+        res.status(200).json({ message: 'updated successfull', data: updateAward })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

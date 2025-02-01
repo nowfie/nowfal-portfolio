@@ -50,7 +50,7 @@ router.get('/', async(req, res) => {
         if (!blogs.length > 0) {
             return res.status(404).json({ message: 'Blogs are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: blogs })
+        res.status(200).json({ message: 'Blogs fetched succesfully', data: blogs })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -63,7 +63,7 @@ router.get('/:name', async(req, res) => {
         if (!blog) {
             return res.status(404).json({ message: 'Blogs are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: blog })
+        res.status(200).json({ message: `${req.params.name} fetched succesfully`, data: blog })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -76,7 +76,7 @@ router.delete('/:id', async(req, res) => {
         if (!deleteBlog) {
             return res.status(404).json({ message: 'Blogs are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: deleteBlog })
+        res.status(200).json({ message: 'deleted successfull', data: deleteBlog })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -96,7 +96,7 @@ router.put('/:id', async(req, res) => {
         if (!updateBlog) {
             return res.status(404).json({ message: 'Blogs are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateBlog })
+        res.status(200).json({ message: 'updated successfull', data: updateBlog })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

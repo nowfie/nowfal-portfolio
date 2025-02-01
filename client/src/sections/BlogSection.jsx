@@ -8,6 +8,7 @@ import 'swiper/css/pagination';
 import axios from 'axios'
 import PrimaryScroll from '../animations/PrimaryScroll';
 import { Link } from 'react-router-dom';
+import ErrorMessage from '../components/ErrorMessage';
 
 const BlogSection = () => {
 
@@ -21,7 +22,7 @@ const BlogSection = () => {
         setErrorMessage(res.data.message || 'Unexpected response from server');
       }
     }).catch((error) => {
-      setErrorMessage('Failed to fetch data. Please try again later.');
+      setErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
       console.error('API Error:', error);
     });
   },[])
@@ -97,7 +98,9 @@ const BlogSection = () => {
             ))}
           </Swiper>
           ):(
-            <h1>{errorMessage || 'No data found'}</h1>
+            <ErrorMessage>
+              <h1 className=' capitalize'>{errorMessage || 'No data found'}</h1>
+            </ErrorMessage>
           )}
         </div> 
       </div>

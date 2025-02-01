@@ -48,7 +48,7 @@ router.get('/', async(req, res) => {
         if (!education.length > 0) {
             return res.status(404).json({ message: 'education are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: education })
+        res.status(200).json({ message: 'education fetched succesfully', data: education })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -61,7 +61,7 @@ router.get('/:id', async(req, res) => {
         if (!education) {
             return res.status(404).json({ message: 'education are not available' })
         }
-        res.status(200).json({ message: 'Hello world', data: education })
+        res.status(200).json({ message: `${req.params.id} fetched succesfully`, data: education })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -74,7 +74,7 @@ router.delete('/:id', async(req, res) => {
         if (!deleteEducation) {
             return res.status(404).json({ message: 'education are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: deleteEducation })
+        res.status(200).json({ message: 'deleted successfull', data: deleteEducation })
 
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -94,7 +94,7 @@ router.put('/:id', async(req, res) => {
         if (!updateEducation) {
             return res.status(404).json({ message: 'education are not available' })
         }
-        res.status(200).json({ message: 'update successfull', data: updateEducation })
+        res.status(200).json({ message: 'updated successfull', data: updateEducation })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

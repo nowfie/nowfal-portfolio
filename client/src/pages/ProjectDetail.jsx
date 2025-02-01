@@ -23,7 +23,7 @@ const ProjectPage =  () => {
         setErrorMessage(res.data.message || 'Unexpected response from server');
       }
     }).catch((error)=>{
-      setErrorMessage('Failed to fetch data. Please try again later.');
+      setErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
       console.error('API Error:', error || errorMessage);
     })
   },[name,errorMessage])

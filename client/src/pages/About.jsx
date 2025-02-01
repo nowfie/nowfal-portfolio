@@ -9,26 +9,27 @@ import axios from "axios"
 import loadIcon from "../components/LoadIcon"
 import ContactSection from "../sections/ContactSection"
 // import Loading from "../components/Loading"
+import { CiNoWaitingSign } from "react-icons/ci";
 
 const About = () => {
 
   const [profile,setProfile] = useState()
-  const [errorMessage,setErrorMessage] = useState('')
+  const [errorProfileMessage,setProfileErrorMessage] = useState('')
 
     useEffect(()=>{
       axios.get(`${import.meta.env.VITE_API_URL}/about`).then((res)=>{
         if(res.status === 200){
           setProfile(res.data.data)
         }else{
-          setErrorMessage(res.data.message || 'Unexpected response from server');
+          setProfileErrorMessage(res.data.message || 'Unexpected response from server');
         }
       }).catch((error)=>{
-        setErrorMessage('Failed to fetch data. Please try again later.');
-        console.error('API Error:', error || errorMessage);
+        setProfileErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
+        console.error('API Error:', error || errorProfileMessage);
       })
-    },[errorMessage])
+    },[errorProfileMessage])
 
-    const [skill,setSkill] = useState()
+    const [skill,setSkill] = useState([])
     const [errorSkillMessage,setSkillErrorMessage] = useState('')
     
 
@@ -40,10 +41,10 @@ const About = () => {
           setSkillErrorMessage(res.data.message || 'Unexpected response from server');
         }
       }).catch((error)=>{
-        setSkillErrorMessage('Failed to fetch data. Please try again later.');
+        setSkillErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
         console.error('API Error:', error || errorSkillMessage);
       })
-    },[errorSkillMessage,errorMessage])
+    },[errorSkillMessage,errorProfileMessage])
 
     // if(!(profile || skill) ){
     //   return(
@@ -59,7 +60,6 @@ const About = () => {
       axios.get(`${import.meta.env.VITE_API_URL}/about/record`).then((res)=>{
         if (res.status === 200) {
           setRecord(res.data.data)
-          console.log('API error ',res.data.message)
         }
       }).catch((error)=>{
         console.log('API error ',error)
@@ -69,17 +69,17 @@ const About = () => {
     const RecordRow = () => {
       const recordData = [
         {
-          number: record.project > 9? record.project : '0'+record.project || 25,
+          number:  typeof(record.project) != 'number'? 27 : record.project > 9 ? record.project : '0'+ record.project,
           text: 'solution delivered'
-      },
-      {
-          number: record.skill > 9? record.skill : '0'+record.skill || 30,
+        },
+        {
+            number:  typeof(record.award) != 'number'? '0'+3 : record.award > 9 ? record.award : '0'+ record.award,
+            text: 'awards numbers'
+        }, 
+        {
+          number:  typeof(record.skill) != 'number'? 30 : record.skill > 9 ? record.skill : '0'+ record.skill,
           text: 'technologies known'
-      },
-      {
-          number: record.award > 9? record.award : '0'+record.award || 2,
-          text: 'achievements numbers'
-      },
+        },
       ]
       return (
         <section className="  overflow-x-hidden pt-12 pb-12 lg:pb-16">
@@ -288,7 +288,7 @@ const About = () => {
             ((profile.education).map((item,index)=>(
               <EducationBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorMessage || 'education not found'}</h1>
+                <h1>{errorProfileMessage || 'education not found'}</h1>
             )
           )
         case 2:
@@ -297,7 +297,7 @@ const About = () => {
             ((profile.experience).map((item,index)=>(
               <ExperienceBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorMessage || 'experience not found'}</h1>
+                <h1>{errorProfileMessage || 'experience not found'}</h1>
             )
           )
         case 3:
@@ -306,7 +306,7 @@ const About = () => {
             ((profile.award).map((item,index)=>(
               <AwardBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorMessage || 'award not found'}</h1>
+                <h1>{errorProfileMessage || 'award not found'}</h1>
             )
           )
       }
@@ -438,19 +438,34 @@ const About = () => {
                       </PrimaryScroll>
                   </div>
                   <div className="lg:w-[70%] relative">
-                      <AnimatePresence mode='wait'>
-                      <motion.div 
-                      key={select} 
-                      initial={{opacity:0}}
-                      animate={{opacity:1}}
-                      exit={{opacity:0}}
-                      transition={{duration:.5,delay:.2}}
-                      className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto">
-                          {filteredSkill&&filteredSkill.map((item,index)=>(
-                              <SkillBox name={item.name} icon={item.Icon}  index={index} key={index}/>
-                          ))}
+                  <AnimatePresence mode="wait">
+                    {skill.length > 0 ? (
+                      <motion.div
+                        key={select}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto"
+                      >
+                        {filteredSkill.map((item, index) => (
+                          <SkillBox name={item.name} icon={item.Icon} index={index} key={index} />
+                        ))}
                       </motion.div>
-                      </AnimatePresence>
+                    ) : (
+                      <motion.div 
+                      key={select}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                      className="flex flex-col w-full gap-7 h-full justify-center items-center">
+                        <CiNoWaitingSign className=" text-5xl" />
+                        <h1>{errorSkillMessage ? `${errorSkillMessage} in ${select}!` : `Skills are not found in ${select}!`}</h1>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
                       {/* <h4 className=' italic text-primary capitalize absolute right-0 -bottom-5 text-xs lg:bottom-0'>scroll down</h4> */}
                   </div>
               </div>

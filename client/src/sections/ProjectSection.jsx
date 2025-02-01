@@ -4,6 +4,7 @@ import  { useEffect, useState } from 'react'
 import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi'
 import PrimaryScroll from '../animations/PrimaryScroll'
 import { Link } from 'react-router-dom'
+import ErrorMessage from '../components/ErrorMessage'
 
 const ProjectSection = () => {
 
@@ -12,13 +13,13 @@ const ProjectSection = () => {
   
   useEffect(()=>{
     axios.get(`${import.meta.env.VITE_API_URL}/project`).then((res)=>{
-      if(res.status === 200 && Array.isArray(res.data.data)){
+      if(res.status === 200){
         setData(res.data.data)
       }else{
         setErrorMessage(res.data.message || 'Unexpected response from server');
       }
     }).catch((error)=>{
-      setErrorMessage('Failed to fetch data. Please try again later.');
+      setErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
       console.error('API Error:', error);
     })
   },[])
@@ -77,15 +78,18 @@ const ProjectSection = () => {
           </PrimaryScroll>
         </div>
         {/* <div className="project-list grid grid-cols-1 gap-8 md:grid-cols-2"> */}
-        <div className="project-list columns-1 md:columns-2 gap-8">
+        
           {data.length>0?(
-            data.map((item, index) => (
+            <div className="project-list columns-1 md:columns-2 gap-8">
+            {data.map((item, index) => (
               <ProjectBox index={index} item={item} key={index}/>
-            ))
+            ))}
+            </div>
           ):(
-            <h1>{errorMessage || 'projects are not available'}</h1>
+            <ErrorMessage>
+              <h1 className=' capitalize'>{errorMessage  || 'projects are not found!'}</h1>
+            </ErrorMessage>
           )}
-        </div>
         <PrimaryScroll scale={.98} className="conclusion flex flex-col gap-8 justify-between lg:flex-row">
             <div className="border-l-[4px] border-primary pl-5">
               <p className=' text-paragraph leading-relaxed text-base lg:w-3/4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime tempora rem unde excepturi ut nesciunt, doloribus mollitia atque sit vitae.</p>
