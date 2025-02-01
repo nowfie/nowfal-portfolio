@@ -5,6 +5,7 @@ import { AiOutlineCloud } from "react-icons/ai";
 const serviceData = [{
         name: 'web-development',
         title: 'Web Development',
+        image: '/blog.png',
         description: 'We provide top-notch web development services using the latest technologies and frameworks to build secure, scalable, and high-performance websites.',
         details: [
             "Our web development services focus on creating fully responsive and interactive websites tailored to meet the unique needs of your business. We use cutting-edge technologies such as React, Angular, and Vue.js for the frontend and Node.js, Django, or Laravel for the backend, ensuring that your website is robust, scalable, and easy to maintain.",
@@ -44,6 +45,7 @@ const serviceData = [{
     {
         name: 'mobile-app-development',
         title: 'Mobile App Development',
+        image: '/blog.png',
         description: 'Our mobile app development services offer custom solutions for Android and iOS platforms, ensuring a seamless user experience and robust functionality.',
         details: [
             "We specialize in developing high-quality mobile applications for both Android and iOS platforms. Our team uses the latest development frameworks such as React Native, Flutter, and Swift to build apps that are fast, reliable, and user-friendly. We work closely with you to understand your business requirements and ensure that your app delivers a smooth and engaging user experience.",
@@ -84,6 +86,7 @@ const serviceData = [{
     {
         name: 'desktop-software-development',
         title: 'Desktop Software Development',
+        image: '/blog.png',
         description: 'We specialize in creating powerful and efficient desktop software applications tailored to meet your business needs, with cross-platform compatibility.',
         details: [
             "Our desktop software development services help businesses automate processes and improve efficiency with custom software solutions. Whether you're looking for a tool to manage internal workflows, enhance customer interaction, or manage data, we design and develop desktop applications that work seamlessly across Windows, macOS, and Linux platforms.",
@@ -124,6 +127,7 @@ const serviceData = [{
     {
         name: 'ai-solutions',
         title: 'AI Solutions',
+        image: '/blog.png',
         description: 'Our AI solutions leverage cutting-edge technologies in computer vision, NLP, and predictive modeling to drive innovation and solve complex challenges.',
         details: [
             "We provide advanced AI solutions that help businesses automate processes, enhance decision-making, and unlock new growth opportunities. Using state-of-the-art machine learning algorithms and neural networks, we develop custom solutions tailored to your business needs. Whether it's image recognition, natural language processing, or predictive analytics, we have the expertise to build AI models that deliver real-world results.",

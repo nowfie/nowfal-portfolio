@@ -6,6 +6,7 @@ import BlogSection from '../sections/BlogSection'
 import BlogDetailSection from '../sections/BlogDetailSection'
 import { useEffect, useState } from 'react'
 import ContactSection from '../sections/ContactSection'
+import { Helmet } from 'react-helmet-async'
 
 const BlogPage = () => {
   const { name } = useParams()
@@ -32,8 +33,59 @@ const BlogPage = () => {
     </div>;
   }
   
+  const pageTitle = `${data.title} | My Blog`
+  const pageDescription = data.description || 'Read this insightful blog post on My Blog!'
+  const pageUrl = `${import.meta.env.VITE_SITE_URL}/blog/${name}`
+  const pageImage = `${import.meta.env.VITE_API_URL}/${data.image}`
+
+
   return (
     <section className=' space-y-2'>
+       <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content="blog, technology, AI, programming, news, articles" />
+        <meta name="author" content="My Blog" />
+        
+        {/* Open Graph Meta Tags (For Facebook, LinkedIn, etc.) */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={pageImage} />
+        <meta property="og:site_name" content="My Blog" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageImage} />
+        <meta name="twitter:site" content="@myblog" />
+        <meta name="twitter:creator" content="@myblog" />
+
+        {/* Canonical Link */}
+        <link rel="canonical" href={pageUrl} />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        
+        {/* Structured Data for SEO (JSON-LD) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": pageTitle,
+            "description": pageDescription,
+            "image": pageImage,
+            "url": pageUrl,
+            "datePublished": data.publishedAt,
+            "author": {
+              "@type": "Person",
+              "name": "My Blog"
+            }
+          })}
+        </script>
+      </Helmet>
         <Header name={name} description={''}/>
         <div className="main !mb-24 flex flex-col justify-center items-center gap-14">
             <PrimaryScroll className={'w-full'}>

@@ -10,6 +10,7 @@ import loadIcon from "../components/LoadIcon"
 import ContactSection from "../sections/ContactSection"
 // import Loading from "../components/Loading"
 import ErrorMessage from "../components/ErrorMessage"
+import { Helmet } from "react-helmet-async"
 
 const About = () => {
 
@@ -482,9 +483,63 @@ const About = () => {
     )
   }
 
+  const pageTitle = "About Me | Mohammed Nowfal"
+  const pageDescription = "Explore my profile, education, experience, skills, and resume. I am a versatile software developer specializing in web, mobile, desktop, and AI applications."
+  const pageUrl = `${import.meta.env.VITE_SITE_URL}/about`
+  const pageImage = `${import.meta.env.VITE_SITE_URL}/assets/profile-image.jpg`
 
   return (
     <main className='' >
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content="Mohammed Nowfal, software developer, web development, AI, mobile apps, resume, portfolio" />
+        <meta name="author" content="Mohammed Nowfal" />
+        
+        {/* Open Graph Meta Tags (For Facebook, LinkedIn, etc.) */}
+        <meta property="og:type" content="profile" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:image" content={pageImage} />
+        <meta property="og:site_name" content="Mohammed Nowfal Portfolio" />
+
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageImage} />
+        <meta name="twitter:site" content="@nowfal_dev" />
+        <meta name="twitter:creator" content="@nowfal_dev" />
+
+        {/* Canonical Link */}
+        <link rel="canonical" href={pageUrl} />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+        
+        {/* Structured Data for SEO (JSON-LD) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Mohammed Nowfal",
+            "url": pageUrl,
+            "image": pageImage,
+            "jobTitle": "Software Developer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Freelance & Open Source"
+            },
+            "sameAs": [
+              "https://github.com/nowfal-dev",
+              "https://www.linkedin.com/in/nowfal-dev",
+              "https://twitter.com/nowfal_dev"
+            ],
+            "description": pageDescription
+          })}
+        </script>
+      </Helmet>
         <Header name={'how to become a graphic designer in simple steps'} description={''}/>
         <AboutDetailSection/>
         <SkillSection/>

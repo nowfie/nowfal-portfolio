@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Header from '../components/Header';
 import { useParams } from 'react-router-dom';
 import ContactSection from '../sections/ContactSection';
+import { Helmet } from 'react-helmet-async';
 
 const ServiceDetail = () => {
   const {name} = useParams()
@@ -41,8 +42,60 @@ const ServiceDetail = () => {
 
   //  <Header name={service.title} description={service.description} />
 
+  const pageTitle = `${service.title} - Our Services | Your Website Name`;
+  const pageDescription = service.description || "Discover our services with top-notch solutions.";
+  const pageUrl = `${window.location.origin}/services/${name}`;
+  const pageImage = `${import.meta.env.VITE_API_URL}/${service.image}`; // Change this to a relevant image
+
   return (
     <main className=' space-y-8'>
+       <Helmet>
+        {/* Standard Meta Tags */}
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content="services, web development, AI solutions, mobile apps, SEO" />
+        <meta name="author" content="Mohammed Nowfal" />
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph (Facebook, LinkedIn, GitHub) */}
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={pageImage} />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Your Website Name" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageImage} />
+        <meta name="twitter:site" content="@yourTwitterHandle" />
+        <meta name="twitter:creator" content="@yourTwitterHandle" />
+
+        {/* Canonical URL */}
+        <link rel="canonical" href={pageUrl} />
+
+        {/* Favicon */}
+        <link rel="icon" type="image/png" href="/favicon.ico" />
+
+        {/* JSON-LD Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": service.title,
+            "description": service.description,
+            "url": pageUrl,
+            "image": pageImage,
+            "provider": {
+              "@type": "Organization",
+              "name": "Your Website Name",
+              "url": "https://yourwebsite.com"
+            }
+          })}
+        </script>
+      </Helmet>
       <Header name={service.title} description={''} />
       <section>
         <div className="main space-y-14">

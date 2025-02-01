@@ -14,6 +14,7 @@ import { useEffect } from 'react'
 import { scroller } from 'react-scroll'
 // import { FaArrowUp } from "react-icons/fa6";
 import Cursor from './components/Cursor'
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const location = useLocation()
@@ -47,6 +48,7 @@ function App() {
   }, [location]);
     
   return (
+    <HelmetProvider>
     <main className="bg-background relative">
       {/* <div className="main relative overflow-hidden">
         <FaArrowUp className=' fixed right-0 bottom-0 border border-heading rounded-full p-3 text-5xl text-primary !z-40'/>
@@ -80,7 +82,7 @@ function App() {
         </div>
       </AnimatePresence>
     </main>
-
+    </HelmetProvider>
   )
 }
 

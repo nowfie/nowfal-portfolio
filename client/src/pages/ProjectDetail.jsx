@@ -6,6 +6,7 @@ import ContactSection from '../sections/ContactSection'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { Helmet } from 'react-helmet-async'
 const ProjectPage =  () => {
   const {name} = useParams()
 
@@ -110,8 +111,56 @@ const ProjectPage =  () => {
     value: PropTypes.array
   }
 
+  const pageTitle = `${data.title} | My Portfolio`;
+  const pageDescription = data.description || 'Explore the details of this amazing project.';
+  const pageUrl = `${window.location.origin}/project/${name}`;
+  const pageImage = `${import.meta.env.VITE_API_URL}/${data.image}`;
+
   return (
     <section className=' space-y-6'>
+       <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={data.tags?.join(", ") || "portfolio, projects, development"} />
+        <meta name="author" content="Mohammed Nowfal" />
+
+        {/* Open Graph / Facebook / LinkedIn */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:image" content={pageImage} />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={pageUrl} />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={pageImage} />
+
+        {/* GitHub & Other Social Media */}
+        <meta property="og:site_name" content="My Portfolio" />
+        <meta property="og:locale" content="en_US" />
+
+        {/* Canonical Tag */}
+        <link rel="canonical" href={pageUrl} />
+
+        {/* Structured Data (JSON-LD for Rich Snippets) */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Portfolio",
+            "name": data.title,
+            "description": pageDescription,
+            "url": pageUrl,
+            "image": pageImage,
+            "author": {
+              "@type": "Person",
+              "name": "Mohammed Nowfal",
+            },
+          })}
+        </script>
+      </Helmet>
       <Header name={name} description={''}/>
       <div className="main flex flex-col justify-center space-y-14 items-center">
         <PrimaryScroll className={'w-full'}>
