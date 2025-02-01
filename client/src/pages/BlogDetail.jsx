@@ -5,6 +5,7 @@ import PrimaryScroll from '../animations/PrimaryScroll'
 import BlogSection from '../sections/BlogSection'
 import BlogDetailSection from '../sections/BlogDetailSection'
 import { useEffect, useState } from 'react'
+import ContactSection from '../sections/ContactSection'
 
 const BlogPage = () => {
   const { name } = useParams()
@@ -44,6 +45,7 @@ const BlogPage = () => {
             </div>
         </div>
       <BlogSection/>
+      <ContactSection/>
     </section>
   )
 }

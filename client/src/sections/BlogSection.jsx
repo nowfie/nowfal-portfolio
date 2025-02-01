@@ -30,7 +30,7 @@ const BlogSection = () => {
     return(
     <PrimaryScroll>
       <Link to={`/blog/${item.title}`} className={` flex flex-col relative group gap-8`}>
-        <div className=" z-30 absolute top-0 flex justify-between p-5 left-0 w-full">
+        <div className=" z-30 snap-start absolute top-0 flex justify-between p-5 left-0 w-full">
           <h3 className=' !bg-heading !text-background py-3 px-5 uppercase font-semibold text-xs tracking-widest rounded-full'>design</h3>
           <h3 className=' bg-background text-heading  py-3 px-5 uppercase font-semibold text-xs tracking-widest  rounded-full'>11.05.2025</h3>
         </div>
@@ -56,7 +56,7 @@ const BlogSection = () => {
   }
 
   return (
-    <section className='py-12 lg:py-16  overflow-x-hidden' >
+    <section id='blog' className='py-12 snap-start lg:py-16  overflow-x-hidden' >
       <div className="main space-y-20">
         <div className="header  flex flex-col gap-9">
             <PrimaryScroll>

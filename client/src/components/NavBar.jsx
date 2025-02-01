@@ -10,8 +10,8 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { MdCopyright } from "react-icons/md";
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link as ScrollLink, scroller } from 'react-scroll';
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -48,6 +48,48 @@ const NavBar = () => {
 
   const [nav,setNav] = useState(false)
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const currentPath = location.pathname;
+  const handleNavigation = (path, to) => {
+    if (currentPath !== path) {
+      navigate(path, { state: { scrollTo: to } });
+    } else {
+      scroller.scrollTo(to, {
+        smooth: true,
+        duration: 1000,
+        offset: -100,
+      });
+    }
+    if (nav) {
+      setNav(false);
+    }
+  };
+
+  const Navlist = [
+    {
+      name: 'About',
+      to: 'about',
+      path: '/',
+    },
+    {
+      name: 'services',
+      to: 'services',
+      path: '/',
+    },
+    {
+      name: 'Portfolio',
+      to: 'portfolio',
+      path: '/',
+    },
+    {
+      name: 'blog',
+      to: 'blog',
+      path: '/',
+    },
+  ];
+
 
   return (
     <nav className={`w-full fixed !z-40`}>
@@ -66,13 +108,24 @@ const NavBar = () => {
             </motion.button>
           </div>
           <div className=" hidden xl:flex gap-x-10">
-            {['about','services','portfolio','review','blog'].map((item,index)=>(
-                <Link to='/' key={index} className=' uppercase text-heading font-semibold tracking-widest text-xs'>{item}</Link>
-            ))}
+          {Navlist.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => handleNavigation(item.path, item.to)}
+              className=' cursor-pointer uppercase text-heading font-semibold tracking-widest text-xs'
+            >
+              {item.name}
+            </button>
+          ))}
           </div>
           <div className=" hidden xl:flex gap-5">
             {/* <HiOutlineMail  className=' text-2xl'/> */}
-            <button className=' uppercase bg-primary py-3 px-5 hover:scale-105 duration-300 rounded-full text-heading font-semibold tracking-widest text-xs'>contact</button>
+            <ScrollLink
+            to='contact'
+            smooth={true}
+                duration={1000}
+                offset={-100}
+            className=' uppercase bg-primary py-3 px-5 hover:scale-105 duration-300 rounded-full text-heading font-semibold tracking-widest text-xs'>contact</ScrollLink>
           </div>
           
         </div>
@@ -86,17 +139,18 @@ const NavBar = () => {
         <div className={` duration-300 w-full h-screen relative `}>
           <div className={` transform transition-transform flex flex-col main xl:hidden  space-y-9 pt-9`}>
             <div className={`  duration-300 space-y-7`}>
-              {['about', 'services', 'portfolio', 'review', 'blog'].map((item, index) => (
-                <Link
-                  to="/"
-                  key={index}
-                  onClick={()=>setNav(!nav)}
-                  className={`flex ${nav?' scale-100 translate-y-0':' scale-95  -translate-y-full backdrop-blur-lg'} ease-in-out duration-300 delay-[.${index+1}s] items-center justify-between uppercase !font-heading text-heading text-xl`}
-                >
-                  {item}
-                  <FiArrowRight className="p-2 rounded-full bg-paragraph/10 text-heading text-4xl" />
-                </Link>
-              ))}
+              {Navlist.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => handleNavigation(item.path, item.to)}
+                className={`flex ${nav?' scale-100 translate-y-0':' scale-95  -translate-y-full backdrop-blur-lg'} ease-in-out duration-300 delay-[.${index+1}s] items-center justify-between uppercase !font-heading text-heading text-xl`}
+
+              >
+                {item.name}
+                <FiArrowRight className="p-2 rounded-full bg-paragraph/10 text-heading text-4xl" />
+
+              </div>
+            ))}
             </div>
             <div className={ `bg-paragraph/10 p-[0.7px] my-14 ${nav?' opacity-100':' opacity-0'} duration-100`} />
             <div className={`flex gap-8 z-30 ${nav?' opacity-100':' opacity-0'} duration-300`}>

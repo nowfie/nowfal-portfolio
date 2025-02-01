@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import { AnimatePresence, motion } from "framer-motion"
 import axios from "axios"
 import loadIcon from "../components/LoadIcon"
+import ContactSection from "../sections/ContactSection"
 // import Loading from "../components/Loading"
 
 const About = () => {
@@ -68,17 +69,17 @@ const About = () => {
     const RecordRow = () => {
       const recordData = [
         {
-            number: record.project || 25,
-            text: 'solution delivered'
-        },
-        {
-            number: record.skill || 30,
-            text: 'technologies known'
-        },
-        {
-            number: record.award || 2,
-            text: 'achievements numbers'
-        },
+          number: record.project > 9? record.project : '0'+record.project || 25,
+          text: 'solution delivered'
+      },
+      {
+          number: record.skill > 9? record.skill : '0'+record.skill || 30,
+          text: 'technologies known'
+      },
+      {
+          number: record.award > 9? record.award : '0'+record.award || 2,
+          text: 'achievements numbers'
+      },
       ]
       return (
         <section className="  overflow-x-hidden pt-12 pb-12 lg:pb-16">
@@ -467,6 +468,7 @@ const About = () => {
         <ProfileSection/>
         <ProjectSection/>
         {/* <BlogSection/> */}
+        <ContactSection/>
     </main>
   )
 }

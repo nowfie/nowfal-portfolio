@@ -5,7 +5,7 @@ const AboutSection = () => {
 
 
   return (
-    <section className=' pt-12 pb-1 lg:pt-16 lg:pb-12 overflow-x-hidden'>
+    <section id="about"  className=' snap-start pt-12 pb-1 lg:pt-16 lg:pb-12 overflow-x-hidden'>
       <div className="main">
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="lg:w-1/2 space-y-10">

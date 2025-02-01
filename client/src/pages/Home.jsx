@@ -1,3 +1,4 @@
+import { ParallaxProvider } from "react-scroll-parallax"
 import AboutSection from "../sections/AboutSection"
 import BlogSection from "../sections/BlogSection"
 import ContactSection from "../sections/ContactSection"
@@ -7,8 +8,9 @@ import RecordSection from "../sections/RecordSection"
 import ServiceSection from "../sections/ServiceSection"
 
 const Home = () => {
+  
   return (
-    <main className=''>
+    <ParallaxProvider className=''>
         <HeroSection/>
         <AboutSection/>
         <RecordSection/>
@@ -16,7 +18,7 @@ const Home = () => {
         <ProjectSection/>
         <BlogSection/>
         <ContactSection/>
-    </main>
+    </ParallaxProvider>
   )
 }
 

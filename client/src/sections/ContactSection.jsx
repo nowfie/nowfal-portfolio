@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PrimaryScroll from "../animations/PrimaryScroll";
 import axios from "axios";
 
 const ContactSection = () => {
     const [spinner, setSpinner] = useState("neutral");
 
-    useEffect(() => {
-        console.log("Spinner state updated:", spinner);
-    }, [spinner]);
 
     const handleMail = async (e) => {
         e.preventDefault();
@@ -34,7 +31,6 @@ const ContactSection = () => {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/mail`, data);
             
             if (response.status === 200) { // Ensure success response
-                console.log("Email sent successfully:", response.data.message);
                 setSpinner("success");
             } else {
                 console.error("Unexpected response:", response);
@@ -48,7 +44,7 @@ const ContactSection = () => {
     
 
     return (
-        <section className="overflow-x-hidden py-12 lg:py-16">
+        <section id='contact' className="overflow-x-hidden snap-start py-12 lg:py-16">
             <div className="main flex flex-col lg:flex-row gap-8 lg:gap-20">
                 <div className="lg:w-1/2 flex flex-col gap-9">
                     <PrimaryScroll className="space-y-9">
@@ -107,7 +103,7 @@ const ContactSection = () => {
                                     name="service"
                                     required
                                 >
-                                    <option value="" disabled selected>Select a service</option>
+                                    <option value="select" disabled>Select a service</option>
                                     {["website", "mobile", "desktop", "aiml", "other"].map(
                                         (item, index) => (
                                             <option className="bg-background" value={item} key={index}>

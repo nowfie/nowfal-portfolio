@@ -1,11 +1,50 @@
 import { FaRegHandPeace } from "react-icons/fa6"
 import Button from "../components/Button"
-
+import {useParallax} from 'react-scroll-parallax'
+import { useEffect, useMemo, useState } from "react"
 const HeroSection = () => {
-  //style={{background: 'linear-gradient(to right, #000 0%, #000 50%, #1d1616 50%, #1d1616 100%)',}}
+
+  const getTranslateX = () => {
+    if (window.matchMedia("(max-width: 640px)").matches) {
+      return [0, -50]; 
+    } else if (window.matchMedia("(max-width: 1024px)").matches) {
+      return [0, -20];
+    } else {
+      return [0, -5];
+    }
+  };
+
+  const [translateX, setTranslateX] = useState(getTranslateX());
+
+  useEffect(() => {
+    const handleResize = () => setTranslateX(getTranslateX());
+    const mediaQueries = [
+      window.matchMedia("(max-width: 640px)"),
+      window.matchMedia("(max-width: 1024px)"),
+    ];
+
+    mediaQueries.forEach((mq) => mq.addEventListener("change", handleResize));
+
+    return () => {
+      mediaQueries.forEach((mq) => mq.removeEventListener("change", handleResize));
+    };
+  }, []);
+
+  const parallaxConfig = useMemo(
+    () => ({
+      easing: "easeOutSine",
+      translateX: translateX,
+      shouldAlwaysCompleteAnimation: true,
+    }),
+    [translateX]
+  );
+
+  const { ref } = useParallax(parallaxConfig);
+  
+
   return (
-    <section 
-    className="overflow-hidden relative pt-36  pb-10 md:pt-44 md:pb-24 flex-col flex justify-center items-center">
+    <section id='hero'
+    className="overflow-hidden h-screen snap-start relative pt-36  pb-10 md:pt-44 md:pb-24 flex-col flex justify-center items-center">
       <div
         className={`h-64 design absolute top-0 left-0 w-full ease-in-out transition-opacity duration-100`}
         style={{
@@ -33,7 +72,7 @@ const HeroSection = () => {
         </div>
       </div>
       <div className="w-[102%] z-30 overflow-visible relative bg-primary rotate-[-5deg] p-4">
-        <div className="scrollable flex whitespace-nowrap">
+        <div ref={ref} className=" flex whitespace-nowrap">
             {[
             'web development',
             'mobile app development',

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const ServiceSection = () => {
     const ServiceBox = ({item,index}) =>{
         return(
-            <div className={`group cursor-pointer flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between ${index == 0 ? 'border-t pt-10' : ''} border-b border-paragraph/15 pb-12`}>
+            <div className={`group  cursor-pointer flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between ${index == 0 ? 'border-t pt-10' : ''} border-b border-paragraph/15 pb-12`}>
                 <div className="lg:w-[80%] space-y-8">
                     <PrimaryScroll delay={index/10}>
                     <h1 className='!font-heading text-heading text-3xl uppercase leading-normal'> {index+1}. {item.title}</h1>
@@ -29,7 +29,7 @@ const ServiceSection = () => {
     }
 
   return (
-    <section className='py-12 lg:py-16 overflow-x-hidden' >
+    <section id="services" className='py-12 snap-start lg:py-16 overflow-x-hidden' >
       <div className="main space-y-20">
         <div className="header flex flex-col gap-9">
             <PrimaryScroll>

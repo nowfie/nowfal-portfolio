@@ -61,7 +61,7 @@ const ProjectSection = () => {
   }
 
   return (
-    <section className=' py-12 lg:py-16 overflow-x-hidden' >
+    <section id='portfolio' className=' snap-start py-12 lg:py-16 overflow-x-hidden' >
       <div className="main space-y-20">
         <div className="header flex flex-col lg:flex-row gap-9 justify-between items-baseline">
           <div className="flex flex-col gap-9 justify-between items-baseline">
