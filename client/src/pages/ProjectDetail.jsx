@@ -63,7 +63,7 @@ const ProjectPage =  () => {
     let stack = data.technologyStack.stack
     
     return(
-        <table className="table-auto w-full rounded-lg border-collapse border bg-paragraph/10 border-background">
+        <table className="table-auto w-full rounded-lg border-collapse border bg-boxground border-background">
             <tbody>
             {Object.entries(stack).map(([category, technologies], index) => {
                     return (

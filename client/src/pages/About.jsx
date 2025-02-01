@@ -9,7 +9,7 @@ import axios from "axios"
 import loadIcon from "../components/LoadIcon"
 import ContactSection from "../sections/ContactSection"
 // import Loading from "../components/Loading"
-import { CiNoWaitingSign } from "react-icons/ci";
+import ErrorMessage from "../components/ErrorMessage"
 
 const About = () => {
 
@@ -143,7 +143,7 @@ const About = () => {
 
     const EducationBox = ({index,item}) =>{
       return(
-        <PrimaryScroll delay={index/10} className=" bg-paragraph/10 p-8 md:p-10 rounded-lg ">
+        <PrimaryScroll delay={index/10} className=" bg-boxground p-8 md:p-10 rounded-lg ">
               <div className="pl-4 border-l-4 border-primary flex flex-col md:flex-row w-full justify-between gap-2 md:items-center">
                 <h2 className=" uppercase font-semibold text-extra tracking-widest text-xs flex items-center gap-2">{item.institution}</h2>
                 <h2 className=" uppercase font-semibold text-paragraph tracking-widest  md:block text-xs">{item.duration}</h2>
@@ -178,7 +178,7 @@ const About = () => {
 
     const ExperienceBox = ({index,item}) =>{
       return(
-        <PrimaryScroll delay={index/10} className=" bg-paragraph/10 p-8 md:p-10 rounded-lg ">
+        <PrimaryScroll delay={index/10} className=" bg-boxground p-8 md:p-10 rounded-lg ">
             <div className="pl-4 border-l-4 border-primary flex flex-col md:flex-row w-full justify-between gap-2 md:items-center">
               <h2 className=" uppercase font-semibold text-extra tracking-widest text-xs flex items-center gap-2">{item.company}</h2>
               <h2 className=" uppercase font-semibold text-paragraph tracking-widest  md:block text-xs">{item.duration}</h2>
@@ -209,7 +209,7 @@ const About = () => {
 
     const AwardBox = ({index,item}) =>{
       return(
-        <PrimaryScroll delay={index/10} className=" bg-paragraph/10 p-8 md:p-10 rounded-lg ">
+        <PrimaryScroll delay={index/10} className=" bg-boxground p-8 md:p-10 rounded-lg ">
           <div className="pl-4 border-l-4 border-primary flex flex-col md:flex-row w-full justify-between gap-2 md:items-center">
               <h2 className=" uppercase font-semibold text-extra tracking-widest text-xs flex items-center gap-2">{item.location}</h2>
               <h2 className=" uppercase font-semibold text-paragraph tracking-widest  md:block text-xs">{item.date}</h2>
@@ -252,11 +252,11 @@ const About = () => {
 
       //border-l-[4px] border-primary pl-5
       return(
-        <PrimaryScroll delay={index/10} className=" justify-between bg-paragraph/10 flex flex-col lg:flex-row gap-16 p-8 md:p-10 rounded-lg ">
+        <PrimaryScroll delay={index/10} className=" justify-between bg-boxground flex flex-col lg:flex-row gap-16 p-8 md:p-10 rounded-lg ">
             <div className="lg:w-[30%] ">
               <div className=" w-full border-l-[4px]  border-primary pl-5 h-full relative overflow-hidden ">
-                <div className="lg:w-[75%] md:m-auto justify-center xl:justify-normal flex h-[250px] xxs:h-[300px] xs:h-[400px] md:h-[500px] lg:h-full !bg-background/40 relative !rounded-xl">
-                  <img src="/hero.png" className=" grayscale-50 rotate-[3deg] absolute w-fit -top-10 lg:top-0 xl:-top-10  lg:h-fit mx-auto" alt="" />
+                <div className="lg:w-[75%]  justify-center lg:justify-normal flex h-[250px] xxs:h-[300px] xs:h-[400px] md:h-[500px] lg:h-full !bg-background/40 relative !rounded-xl">
+                  <img src="/hero.png" className=" grayscale-50 rotate-[3deg] absolute w-fit -top-10 lg:top-0 xl:-top-10  lg:h-fit " alt="" />
                 </div>
               </div>
             </div>
@@ -288,7 +288,9 @@ const About = () => {
             ((profile.education).map((item,index)=>(
               <EducationBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorProfileMessage || 'education not found'}</h1>
+                <ErrorMessage>
+                  <h1 className=" capitalize">{errorProfileMessage || 'education not found'}</h1>
+                </ErrorMessage>
             )
           )
         case 2:
@@ -297,7 +299,9 @@ const About = () => {
             ((profile.experience).map((item,index)=>(
               <ExperienceBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorProfileMessage || 'experience not found'}</h1>
+                <ErrorMessage>
+                   <h1 className=" capitalize">{errorProfileMessage || 'experience not found'}</h1>
+                </ErrorMessage>
             )
           )
         case 3:
@@ -306,7 +310,9 @@ const About = () => {
             ((profile.award).map((item,index)=>(
               <AwardBox index={index} item={item} key={index}/>
             ))):(
-                <h1>{errorProfileMessage || 'award not found'}</h1>
+                <ErrorMessage>
+                  <h1 className=" capitalize">{errorProfileMessage || 'award not found'}</h1>
+                </ErrorMessage>
             )
           )
       }
@@ -331,7 +337,7 @@ const About = () => {
                 </PrimaryScroll>
                 <PrimaryScroll className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
                 {['profile','education','experience','awards'].map((item,index)=>(
-                  <button key={index} onClick={()=>setSelect(index)} className={` transition-all  duration-300 uppercase font-semibold text-xs p-3 rounded-lg tracking-widest ${index === select?' bg-primary':'bg-paragraph/10'}`}>{item}</button>
+                  <button key={index} onClick={()=>setSelect(index)} className={` transition-all  duration-300 uppercase font-semibold text-xs p-3 rounded-lg tracking-widest ${index === select?' bg-primary':'bg-boxground'}`}>{item}</button>
                 ))}
               </PrimaryScroll>
               </div>
@@ -380,7 +386,7 @@ const About = () => {
     const SkillBox = ({index,name,icon}) =>{
       
         return(
-            <PrimaryScroll delay={index/10} className=" bg-paragraph/10 overflow-hidden gap-3 relative rounded-lg px-7 py-11 justify-center items-center flex cursor-pointer group">
+            <PrimaryScroll delay={index/10} className=" bg-boxground overflow-hidden gap-3 relative rounded-lg px-7 py-11 justify-center items-center flex cursor-pointer group">
                 <div className=' text-4xl transition-all absolute left-1/2 -translate-x-1/2 group-hover:left-[20%] group-focus:left-[20%] group-active:left-[20%] group-hover:text-primary group-focus:text-primary group-active:text-primary duration-300'  dangerouslySetInnerHTML={{ __html: icon }}/>
                 {/* <div className="icon text-white relative group-hover:text-heading transition duration-500 text-4xl" dangerouslySetInnerHTML={{ __html: icon }} /> */}
                 
@@ -424,7 +430,7 @@ const About = () => {
                       <div className="flex flex-col gap-5">
                       {['language','frontend','backend','aiml','others',].map((item,index)=>(
                           <PrimaryScroll className={'w-full'} key={index} delay={index/10}>
-                              <button  onClick={()=>setSelect(item)} className={` w-full transition-all  duration-300 uppercase font-semibold text-xs p-4 rounded-lg tracking-widest ${item === select?' bg-primary':'bg-paragraph/10'}`}>{item}</button>
+                              <button  onClick={()=>setSelect(item)} className={` w-full transition-all  duration-300 uppercase font-semibold text-xs p-4 rounded-lg tracking-widest ${item === select?' bg-primary':'bg-boxground'}`}>{item}</button>
                           </PrimaryScroll>
                       ))}
                       </div>
@@ -460,8 +466,10 @@ const About = () => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                       className="flex flex-col w-full gap-7 h-full justify-center items-center">
-                        <CiNoWaitingSign className=" text-5xl" />
-                        <h1>{errorSkillMessage ? `${errorSkillMessage} in ${select}!` : `Skills are not found in ${select}!`}</h1>
+                        <ErrorMessage>
+                        <h1 className=" capitalize">{errorSkillMessage ? `${errorSkillMessage} in ${select}!` : `Skills are not found in ${select}!`}</h1>
+                          
+                          </ErrorMessage>                        
                       </motion.div>
                     )}
                   </AnimatePresence>

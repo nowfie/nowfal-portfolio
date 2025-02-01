@@ -44,7 +44,7 @@ const BlogSection = () => {
             <p className=' text-paragraph  capitalize leading-relaxed'>{item.description}</p>
           </div>
           <div className="hidden lg:block lg:w-[25%]">
-            <button className=' w-fit lg:w-full h-full rounded-lg group-hover:bg-primary group-focus:bg-primary group-active:bg-primary group-hover:text-heading group-focus:text-heading group-active:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8'> <FiArrowUpRight className=' duration-300 ml-auto text-4xl group-hover:rotate-45 group-focus:rotate-45 group-active:rotate-45' /> read more</button>
+            <button className=' w-fit lg:w-full h-full rounded-lg group-hover:bg-primary group-focus:bg-primary group-active:bg-primary group-hover:text-heading group-focus:text-heading group-active:text-heading duration-300 ease-in-out bg-boxground p-4 flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8'> <FiArrowUpRight className=' duration-300 ml-auto text-4xl group-hover:rotate-45 group-focus:rotate-45 group-active:rotate-45' /> read more</button>
           </div>
         </div>
       </Link>

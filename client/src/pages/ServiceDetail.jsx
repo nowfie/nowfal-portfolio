@@ -21,7 +21,7 @@ const ServiceDetail = () => {
   const FeaturesBox = ({item,index})=>{
     let Icon = item.icon
     return(
-        <PrimaryScroll delay={index/10} className="p-6 space-y-5 bg-paragraph/10 rounded-lg">
+        <PrimaryScroll delay={index/10} className="p-6 space-y-5 bg-boxground rounded-lg">
           <Icon className=' text-4xl text-primary'/>
           <h1 className=' !font-heading capitalize text-xl'>{item.heading}</h1>
           <p className=' text-paragraph capitalize text-sm'>{item.description}</p>

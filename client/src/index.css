@@ -13,16 +13,18 @@ p,ul,li{
 }
 
 @theme {
+  /* colors */
   --color-primary: #CD512F;
   --color-secondary: #18191D;
   --color-background: #000000;
   --color-foreground: #F0F0F0;
   --color-middleground: #FFF7F1;
-  --color-boxground: #051819;
+  --color-boxground: #0D0D0C;
   --color-heading: #D2D2D0;
   --color-extra: #ffffffcc;
   --color-paragraph: #d2d2d099;
 
+  /* breakpoints */
   --breakpoint-xxs: 375px;
   --breakpoint-xs: 410px;
   --breakpoint-sm: 640px;
@@ -31,11 +33,14 @@ p,ul,li{
   --breakpoint-xl: 1280px;
   --breakpoint-2xl: 1536px;
 
+  /* font family */
   --font-heading: Anton, serif;
 
+  /* line height */
   --leading-xs: 3.7rem;
   --leading-sm: 4.3rem;
 
+  /* box shadow */
   --shadow-minimal: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
 

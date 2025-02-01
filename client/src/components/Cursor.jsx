@@ -18,7 +18,7 @@ const Cursor = () => {
 
   return (
     <motion.div
-      className="fixed -top-2 left-0 w-6 h-6 bg-paragraph-default/20 rounded-full pointer-events-none"
+      className="fixed -top-2 left-0 w-6 h-6 bg-paragraph/20 rounded-full pointer-events-none"
       style={{ translateX: "-50%", translateY: "-50%" }}
       animate={{
         x: cursorPosition.x,

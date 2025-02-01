@@ -12,6 +12,8 @@ import ScrollToTop from './components/ScrollToTop'
 import About from './pages/About'
 import { useEffect } from 'react'
 import { scroller } from 'react-scroll'
+// import { FaArrowUp } from "react-icons/fa6";
+import Cursor from './components/Cursor'
 
 function App() {
   const location = useLocation()
@@ -46,10 +48,15 @@ function App() {
     
   return (
     <main className="bg-background relative">
+      {/* <div className="main relative overflow-hidden">
+        <FaArrowUp className=' fixed right-0 bottom-0 border border-heading rounded-full p-3 text-5xl text-primary !z-40'/>
 
+      </div> */}
+      <Cursor/>
       <ScrollToTop />
       <NavBar />
 
+  
       <AnimatePresence mode="wait">
         <div key={location.pathname}>
           <motion.div

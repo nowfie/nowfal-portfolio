@@ -33,7 +33,7 @@ const Project = () => {
           <div className="main space-y-9">
             <PrimaryScroll className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
               {['website','mobile app','desktop','ai'].map((item,index)=>(
-                <button key={index} onClick={()=>setSelect(item)} className={` transition-all  duration-300 uppercase font-semibold text-xs p-3 rounded-lg tracking-widest ${item === select?' bg-primary':'bg-paragraph/10'}`}>{item}</button>
+                <button key={index} onClick={()=>setSelect(item)} className={` transition-all  duration-300 uppercase font-semibold text-xs p-3 rounded-lg tracking-widest ${item === select?' bg-primary':'bg-boxground'}`}>{item}</button>
               ))}
             </PrimaryScroll>
       <AnimatePresence mode="wait">
@@ -57,7 +57,7 @@ const Project = () => {
               >
                 <div className="!z-30 flex justify-between w-11/12 items-center absolute bottom-0 right-0 duration-300 opacity-0 translate-y-52 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 group-active:opacity-100 group-active:translate-y-0">
                   <h1 className="!font-heading uppercase text-2xl lg:text-3xl">{item.title}</h1>
-                  <button className="hidden lg:w-[35%] w-[40%] !z-30 h-full rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 lg:flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8">
+                  <button className="hidden lg:w-[35%] w-[40%] !z-30 h-full rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-boxground p-4 lg:flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8">
                     <FiArrowUpRight className="duration-300 ml-auto text-3xl lg:text-4xl" />
                     Read more
                   </button>

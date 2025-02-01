@@ -80,7 +80,7 @@ const HeroSection = () => {
             'artificial intelligence',
             'search engine optimization',
             ].map((item, index) => (
-            <h1 key={`original-${index}`} className="text-heading !font-heading uppercase text-2xl inline-block mx-4">
+            <h1 key={`original-${index}`} className="text-heading !font-heading uppercase text-2xl inline-block mx-6">
                 {item}
             </h1>
             ))}
@@ -91,7 +91,7 @@ const HeroSection = () => {
             'artificial intelligence',
             'search engine optimization',
             ].map((item, index) => (
-            <h1 key={`duplicate-${index}`} className="text-heading !font-heading uppercase text-2xl inline-block mx-4">
+            <h1 key={`duplicate-${index}`} className="text-heading !font-heading uppercase text-2xl inline-block mx-6">
                 {item}
             </h1>
             ))}

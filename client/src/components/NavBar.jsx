@@ -93,7 +93,7 @@ const NavBar = () => {
 
   return (
     <nav className={`w-full fixed !z-40`}>
-      <div className={` py-7 xl:py-10 transition-all !z-40 ease-in-out duration-300 border-b  ${isScrolled ? 'backdrop-blur-md bg-[#111110]/75  border-paragraph/20 ': 'border-b-transparent bg-transparent'} ${nav ?'!backdrop-blur-lg !border-transparent !bg-background':' bg-transparent'}`}>
+      <div className={` py-7 xl:py-10 transition-all !z-40 ease-in-out duration-300 border-b  ${isScrolled ? 'backdrop-blur-lg !bg-[#111110]/50  border-paragraph/20 ': 'border-b-transparent bg-transparent'} ${nav ?'!backdrop-blur-lg !border-transparent !bg-background':' bg-transparent'}`}>
         <div className={`main flex justify-between items-center !z-40`}>
           <Link to={'/'} onClick={()=>setNav(false)} className="pl-4 border-l-4 border-primary !z-40 uppercase text-3xl !font-heading">
             nowfal
@@ -147,12 +147,12 @@ const NavBar = () => {
 
               >
                 {item.name}
-                <FiArrowRight className="p-2 rounded-full bg-paragraph/10 text-heading text-4xl" />
+                <FiArrowRight className="p-2 rounded-full bg-boxground text-heading text-4xl" />
 
               </div>
             ))}
             </div>
-            <div className={ `bg-paragraph/10 p-[0.7px] my-14 ${nav?' opacity-100':' opacity-0'} duration-100`} />
+            <div className={ `bg-boxground p-[0.7px] my-14 ${nav?' opacity-100':' opacity-0'} duration-100`} />
             <div className={`flex gap-8 z-30 ${nav?' opacity-100':' opacity-0'} duration-300`}>
               {socialLink.map((item, index) => {
                 const Icon = item.icon;

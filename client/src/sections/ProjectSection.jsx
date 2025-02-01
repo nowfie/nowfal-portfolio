@@ -36,7 +36,7 @@ const ProjectSection = () => {
         >
           <div className="!z-30 flex justify-between w-11/12 items-center absolute bottom-0 right-0 duration-300 opacity-0 translate-y-52 group-hover:opacity-100 group-hover:translate-y-0 group-focus:opacity-100 group-focus:translate-y-0 group-active:opacity-100 group-active:translate-y-0">
             <h1 className="!font-heading uppercase text-2xl lg:text-3xl">{item.title}</h1>
-            <button className="hidden lg:w-[25%] w-[40%] !z-30 h-full rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-paragraph/10 p-4 lg:flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8">
+            <button className="hidden lg:w-[25%] w-[40%] !z-30 h-full rounded-lg group-hover:bg-primary group-hover:text-heading duration-300 ease-in-out bg-boxground p-4 lg:flex items-center justify-center flex-col uppercase tracking-widest text-xs font-semibold gap-8">
               <FiArrowUpRight className="duration-300 ml-auto text-3xl lg:text-4xl" />
               read more
             </button>
