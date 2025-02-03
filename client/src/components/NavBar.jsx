@@ -12,6 +12,7 @@ import { LuInstagram } from "react-icons/lu";
 import { MdCopyright } from "react-icons/md";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Link as ScrollLink, scroller } from 'react-scroll';
+import { navlist } from '../utils/staticData';
 const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -67,37 +68,16 @@ const NavBar = () => {
     }
   };
 
-  const Navlist = [
-    {
-      name: 'About',
-      to: 'about',
-      path: '/',
-    },
-    {
-      name: 'services',
-      to: 'services',
-      path: '/',
-    },
-    {
-      name: 'Portfolio',
-      to: 'portfolio',
-      path: '/',
-    },
-    {
-      name: 'blog',
-      to: 'blog',
-      path: '/',
-    },
-  ];
-
 
   return (
     <nav className={`w-full fixed !z-40`}>
       <div className={` py-7 xl:py-10 transition-all !z-40 ease-in-out duration-300 border-b  ${isScrolled ? 'backdrop-blur-lg !bg-[#111110]/50  border-paragraph/20 ': 'border-b-transparent bg-transparent'} ${nav ?'!backdrop-blur-lg !border-transparent !bg-background':' bg-transparent'}`}>
         <div className={`main flex justify-between items-center !z-40`}>
-          <Link to={'/'} onClick={()=>setNav(false)} className="pl-4 border-l-4 border-primary !z-40 uppercase text-3xl !font-heading">
+          <button
+          onClick={() => handleNavigation('/', 'hero')}
+          className="pl-4 border-l-4 border-primary !z-40 uppercase text-3xl !font-heading">
             nowfal
-          </Link>
+          </button>
           <div className="nav-btns xl:hidden z-30">
             <motion.button whileTap={{scale:.5}} onClick={()=>setNav(!nav)} className="!z-30">
               {nav?(
@@ -108,7 +88,7 @@ const NavBar = () => {
             </motion.button>
           </div>
           <div className=" hidden xl:flex gap-x-10">
-          {Navlist.map((item, index) => (
+          {navlist.slice(1).map((item, index) => (
             <button
               key={index}
               onClick={() => handleNavigation(item.path, item.to)}
@@ -125,7 +105,7 @@ const NavBar = () => {
             smooth={true}
                 duration={1000}
                 offset={-100}
-            className=' uppercase bg-primary py-3 px-5 hover:scale-105 duration-300 rounded-full text-heading font-semibold tracking-widest text-xs'>contact</ScrollLink>
+            className=' uppercase cursor-pointer bg-primary py-3 px-5 hover:scale-105 duration-300 rounded-full text-heading font-semibold tracking-widest text-xs'>contact</ScrollLink>
           </div>
           
         </div>
@@ -139,7 +119,7 @@ const NavBar = () => {
         <div className={` duration-300 w-full h-screen relative `}>
           <div className={` transform transition-transform flex flex-col main xl:hidden  space-y-9 pt-9`}>
             <div className={`  duration-300 space-y-7`}>
-              {Navlist.map((item, index) => (
+              {navlist.map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleNavigation(item.path, item.to)}

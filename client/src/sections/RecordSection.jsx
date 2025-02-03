@@ -36,18 +36,19 @@ const RecordSection = () => {
     calculateYearsOfExperience();
   },[expYear])
 
+
     const recordData = [
       {
         number: expYear > 9 ? expYear : '0'+expYear,
         text: 'years experience'
       },
       {
-          number:  typeof(data.project) != 'number'? 27 : data.project > 9 ? data.project : '0'+ data.project,
+          number:  typeof(data.solution) != 'number'? 27 : data.solution > 9 ? data.solution : '0'+ data.solution,
           text: 'solution delivered'
       },
       {
-          number:  typeof(data.award) != 'number'? '0'+3 : data.award > 9 ? data.award : '0'+ data.award,
-          text: 'awards numbers'
+          number:  typeof(data.prototype) != 'number'? '0'+3 : data.prototype > 9 ? data.prototype : '0'+ data.prototype,
+          text: 'prototypes completed'
       }, 
       {
         number:  typeof(data.skill) != 'number'? 30 : data.skill > 9 ? data.skill : '0'+ data.skill,

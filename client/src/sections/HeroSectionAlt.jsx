@@ -17,7 +17,7 @@ const HeroSectionAlt = () => {
           <div className="md:w-[75%] space-y-10">
             <div className="content flex flex-col  md:items-center space-y-10">
               <h5 className=' flex items-center text-xs font-semibold gap-2 text-paragraph uppercase tracking-widest'><FaRegHandPeace className={'!text-primary text-2xl'}/> welcome my friend</h5>
-               <h1 className=' text-[56px] md:text-center uppercase !font-heading  leading-sm'>hello i&lsquo;m mohammed <span className=' !font-heading  text-primary'>nowfal,</span> fullstack developer</h1>
+               <h1 className=' text-[56px] md:text-center uppercase !font-heading  leading-sm'>hello i&apos;m{" "} mohammed <span className=' !font-heading  text-primary'>nowfal,</span> fullstack developer</h1>
                 <p className=' !mb-7 text-paragraph md:text-center capitalize leading-relaxed'>I develop web, mobile, and desktop applications, integrating AI for enhanced functionality. Committed to creating user-centric solutions with the latest technologies.</p>
             </div>
             <div className=" flex md:items-center md:justify-center gap-6">

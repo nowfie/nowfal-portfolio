@@ -2,6 +2,7 @@ import { FaMobileAlt, FaSearch, FaShieldAlt, FaShoppingCart, FaBell, FaBolt, FaL
 import { MdDevices } from "react-icons/md";
 import { FiMonitor } from "react-icons/fi";
 import { AiOutlineCloud } from "react-icons/ai";
+
 const serviceData = [{
         name: 'web-development',
         title: 'Web Development',
@@ -167,6 +168,79 @@ const serviceData = [{
     }
 ];
 
+const aboutData = {
+    pageHeader: "About Me",
+    heading: 'My vision is to create happy my clients',
+    abstract: [
+        "I am Mohammed Nowfal, a passionate and skilled software developer specializing in full-stack development, AI solutions, and innovative problem-solving.",
+        "With expertise in web, mobile, and desktop applications, I strive to create efficient, scalable, and user-friendly solutions for businesses and individuals alike. My development process involves a combination of cutting-edge technologies, best coding practices, and a problem-solving mindset to ensure high performance and reliability.",
+        "My mission is to leverage technology to solve real-world problems and drive digital transformation, making an impact in the evolving digital landscape. Whether it's automating workflows, enhancing user experiences, or deploying AI-powered solutions, I am committed to delivering excellence and innovation."
+    ],
+    detail: [
+        "I specialize in full-stack development, AI, and software engineering, building scalable, high-performance applications. My expertise spans JavaScript, Python, and java, enabling me to create web, mobile, and AI-powered solutions that enhance productivity and efficiency. I constantly stay updated with emerging technologies to ensure my solutions are cutting-edge and adaptable to future trends.",
+        "I focus on machine learning, computer vision, and automation, using TensorFlow, PyTorch, and OpenCV. From facial recognition to object detection, I develop intelligent solutions that improve security, business operations, and user experiences. My approach involves continuous learning and refining AI models to achieve higher accuracy and efficiency in real-world applications.",
+        "I continuously explore new technologies, optimize architectures, and refine my skills in AI and cloud computing. My goal is to create cutting-edge solutions that drive digital transformation and make a lasting impact. By integrating automation and advanced analytics, I help businesses scale efficiently and stay ahead in a competitive digital landscape."
+    ],
+    image: "/nowfal.jpg",
+    recordDummy: [1, 2, 3, 4],
+    skillData: {
+        heading: "My Tech Stack",
+        paragraph: "I specialize in full-stack development, AI, and cloud computing. My experience spans frontend and backend frameworks, DevOps tools, and database management. I focus on integrating the latest technologies to create scalable, efficient, and innovative applications. With a deep understanding of cloud infrastructure, I ensure seamless integration of applications with robust, scalable cloud services.",
+        technologies: {
+            language: "JavaScript, Python, C++, Java, TypeScript",
+            frontend: "React, Vue.js, Angular, Bootstrap, Tailwind CSS, Svelte, Next.js",
+            backend: "Node.js, Django, Laravel, Flask, Express.js",
+            aiml: "TensorFlow, PyTorch, OpenCV, Scikit-Learn, Keras",
+            others: "Git, Docker, Firebase, MongoDB, PostgreSQL, MySQL, Redis, AWS, Azure, Google Cloud, Kubernetes"
+        }
+    },
+    profileData: {
+        heading: "Who Am I?",
+        paragraph: "A software engineer passionate about innovation, problem-solving, and building intelligent solutions."
+    }
+
+}
 
 
-export { serviceData };
+const projectData = {
+    heading: 'Designing a Better World Today',
+    pageHeader: 'Our best works'
+}
+
+const blogData = {
+    heading: 'latest from blog'
+}
+
+const heroData = {
+    heading: 'hello i‘m mohammed nowfal, fullstack developer',
+    subHeading: 'welcome my friend'
+}
+
+const navlist = [{
+        name: 'home',
+        to: 'hero',
+        path: '/',
+    },
+    {
+        name: 'About',
+        to: 'about',
+        path: '/',
+    },
+    {
+        name: 'services',
+        to: 'services',
+        path: '/',
+    },
+    {
+        name: 'Portfolio',
+        to: 'portfolio',
+        path: '/',
+    },
+    {
+        name: 'blog',
+        to: 'blog',
+        path: '/',
+    },
+];
+
+export { serviceData, aboutData, projectData, blogData, heroData, navlist };

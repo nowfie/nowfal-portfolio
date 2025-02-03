@@ -82,6 +82,10 @@ const ProjectSchema = mongoose.Schema({
     demoImages: {
         type: [String],
         required: [true, 'please provide a title'],
+    },
+    freelance: {
+        type: Boolean,
+        required: [true, 'Please specify if the project is freelance or not'],
     }
 
 }, { timestamps: true });

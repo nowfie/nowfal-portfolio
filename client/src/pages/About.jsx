@@ -11,6 +11,7 @@ import ContactSection from "../sections/ContactSection"
 // import Loading from "../components/Loading"
 import ErrorMessage from "../components/ErrorMessage"
 import { Helmet } from "react-helmet-async"
+import {aboutData} from '../utils/staticData'
 
 const About = () => {
 
@@ -70,20 +71,20 @@ const About = () => {
     const RecordRow = () => {
       const recordData = [
         {
-          number:  typeof(record.project) != 'number'? 27 : record.project > 9 ? record.project : '0'+ record.project,
+          number:  typeof(record.solution) != 'number'? 27 : record.solution > 9 ? record.solution : '0'+ record.solution,
           text: 'solution delivered'
-        },
-        {
-            number:  typeof(record.award) != 'number'? '0'+3 : record.award > 9 ? record.award : '0'+ record.award,
-            text: 'awards numbers'
-        }, 
-        {
-          number:  typeof(record.skill) != 'number'? 30 : record.skill > 9 ? record.skill : '0'+ record.skill,
-          text: 'technologies known'
-        },
+      },
+      {
+          number:  typeof(record.prototype) != 'number'? '0'+3 : record.prototype > 9 ? record.prototype : '0'+ record.prototype,
+          text: 'prototypes completed'
+      }, 
+      {
+        number:  typeof(record.skill) != 'number'? 30 : record.skill > 9 ? record.skill : '0'+ record.skill,
+        text: 'technologies known'
+      },
       ]
       return (
-        <section className="  overflow-x-hidden pt-12 pb-12 lg:pb-16">
+        <section className="  overflow-hidden pt-8">
             <div className=" grid grid-cols-1 gap-10 md:gap-20 lg:gap-3 xl:gap-5 md:grid-cols-3">
                 {recordData.map((item,index)=>{
                   const splittedtext = item.text.split(' ')
@@ -109,7 +110,7 @@ const About = () => {
     }
 
     return(
-      <section className="py-12 lg:py-16 overflow-x-hidden">
+      <section className="py-12 overflow-x-hidden">
           <div className="main flex flex-col justify-center items-center gap-14">
             <PrimaryScroll className={'w-full'}>
               <img src={'/blog.jpg'} width={1000} height={1000} alt='blog-image' className=' rounded-lg w-full h-full'/>
@@ -117,17 +118,17 @@ const About = () => {
             <div className="flex flex-col lg:flex-row gap-10">
               <div className="lg:w-1/2 space-y-10">
                 <PrimaryScroll >
-                  <h1 className=' !font-heading text-heading heading uppercase'>My vision is to <br /> <span className="text-primary !font-heading">create happy</span>  <br /> my clients</h1>
+                  <h1 className=' !font-heading text-heading heading uppercase'>passionate  <br /> <span className="text-primary !font-heading">tech </span> innovator</h1>
                 </PrimaryScroll>
                 <PrimaryScroll className={''} >
-                  <p className=' text-paragraph leading-relaxed text-base lg:w-3/4'>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects who you are and what you stand for, but words that truly land with those that read them, calling your audience in and making them want more. </p>
+                  <p className=' text-paragraph leading-relaxed text-base lg:w-3/4'>{aboutData.detail[0]}</p>
                 </PrimaryScroll>
               </div>
               <div className="lg:w-1/2">
                  <ul className=' space-y-8'>
-                    {Array.from({length:2}).map((item,index)=>(
+                    {[aboutData.detail[1],aboutData.detail[2]].map((item,index)=>(
                       <PrimaryScroll key={index} delay={index/10} >
-                        <li className=' leading-relaxed text-paragraph' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat reprehenderit delectus, porro dicta quam est sapiente iste dolor earum sed! Eius, aut, cumque culpa sint voluptates tenetur suscipit, mollitia laborum laboriosam consequuntur accusantium doloribus quod.</li>
+                        <li className=' leading-relaxed text-paragraph' >{item}</li>
                       </PrimaryScroll>
                     ))}
                   </ul>
@@ -334,7 +335,7 @@ const About = () => {
               </div>
               <div className="lg:w-1/2 space-y-7 flex flex-col justify-between">
                 <PrimaryScroll className={''} >
-                  <p className=' text-paragraph leading-relaxed text-base'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime tempora rem unde excepturi ut nesciunt, doloribus mollitia atque sit vitae. </p>
+                  <p className=' text-paragraph leading-relaxed text-base'>{aboutData.profileData.paragraph}</p>
                 </PrimaryScroll>
                 <PrimaryScroll className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
                 {['profile','education','experience','awards'].map((item,index)=>(
@@ -363,7 +364,7 @@ const About = () => {
   }
 
   const SkillSection =()=>{
-    const [select,setSelect] = useState('language')
+    const [select,setSelect] = useState('backend')
 
     const [loadedSkills, setLoadedSkills] = useState([]);
 
@@ -387,15 +388,11 @@ const About = () => {
     const SkillBox = ({index,name,icon}) =>{
       
         return(
-            <PrimaryScroll delay={index/10} className=" bg-boxground overflow-hidden gap-3 relative rounded-lg px-7 py-11 justify-center items-center flex cursor-pointer group">
-                <div className=' text-4xl transition-all absolute left-1/2 -translate-x-1/2 group-hover:left-[20%] group-focus:left-[20%] group-active:left-[20%] group-hover:text-primary group-focus:text-primary group-active:text-primary duration-300'  dangerouslySetInnerHTML={{ __html: icon }}/>
-                {/* <div className="icon text-white relative group-hover:text-heading transition duration-500 text-4xl" dangerouslySetInnerHTML={{ __html: icon }} /> */}
-                
-                <div className="bg-primary absolute top-0 right-0 !h-full w-full px-6 py-3 flex flex-col justify-center  gap-3 opacity-0 duration-300 transition-all group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 ">
-                    <div className=' text-4xl transition-all  text-heading duration-300'  dangerouslySetInnerHTML={{ __html: icon }}/>
-                {/* <div className="icon text-white relative group-hover:text-heading transition duration-500 text-4xl" dangerouslySetInnerHTML={{ __html: icon }} /> */}
-                    
-                    <h1 className=' opacity-0  transition-all group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100  text-heading z-20 uppercase tracking-widest text-sm !font-heading'>{name}</h1>
+            <PrimaryScroll delay={index/10} className=" select-none bg-boxground overflow-hidden gap-3 relative rounded-lg px-7 py-11 justify-center items-center flex cursor-pointer group">
+                <div className=' text-4xl transition-all absolute left-1/2 -translate-x-1/2 group-hover:left-[20%] group-focus:left-[20%] group-active:left-[20%] group-hover:text-primary group-focus:text-primary group-active:text-primary duration-500'  dangerouslySetInnerHTML={{ __html: icon }}/>
+                <div className="bg-primary absolute top-0 right-0 !h-full w-full px-6 py-3 flex flex-col justify-center  gap-3 opacity-0 duration-500 transition-all group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100 ">
+                    <div className=' text-4xl transition-all  text-heading duration-500'  dangerouslySetInnerHTML={{ __html: icon }}/>
+                      <h1 className=' opacity-0 duration-500 transition-all group-hover:opacity-100 group-focus:opacity-100 group-active:opacity-100  text-heading z-20 uppercase tracking-widest text-sm !font-heading'>{name}</h1>
                 </div>
             </PrimaryScroll>
         )
@@ -408,21 +405,28 @@ const About = () => {
     }
 
     const filteredSkill = loadedSkills.filter((item)=>item.category == select)
-  return (
+    // const filteredParagraph = Object.entries(aboutData.skillData.technologies).filter(([key]) => key == select)[0][1]
+    
+    return (
       <section className='lg:py-16 py-12 overflow-x-hidden'>
           <div className="main space-y-8">
               <div className="flex flex-col lg:flex-row gap-5 lg:gap-20">
                   <div className="lg:w-[30%] space-y-10">
                       <PrimaryScroll>
-                          <h1 className=' !font-heading text-heading heading uppercase'>why <br /> hire <span className="text-primary !font-heading">me ?</span></h1>
+                          <h1 className=' !font-heading text-heading heading uppercase'>my <br /> tech <span className="text-primary !font-heading">stack</span></h1>
                       </PrimaryScroll>
                   </div>
-                  <div className="lg:w-[70%]  lg:block space-y-4">
+                  {/* <div className="lg:w-[70%]  lg:block space-y-4">
                       <PrimaryScroll>
-                          <h2 className=' hidden lg:block !font-heading text-heading uppercase text-xl'>languages <span className="text-primary !font-heading">known</span></h2>                    
+                        <h2 className='  !font-heading text-heading uppercase text-xl'>{select} <span className="text-primary !font-heading">{select == 'language'?'known':'tehcnologies'}</span></h2>
                       </PrimaryScroll>
                       <PrimaryScroll>
-                          <p className=' text-paragraph leading-relaxed w-11/12'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe ad modi distinctio culpa dolorum adipisci optio perferendis provident, ut facere ab quasi ullam temporibus? Nobis, voluptatum vero amet doloribus quis excepturi labore sapiente mollitia autem tempore odit ad libero! Similique!</p>
+                          <p className=' text-paragraph leading-relaxed w-11/12'>{filteredParagraph}</p>
+                      </PrimaryScroll>
+                  </div> */}
+                  <div className="lg:w-[70%] space-y-4">
+                      <PrimaryScroll>
+                          <p className=' text-paragraph leading-relaxed w-11/12'>{aboutData.skillData.paragraph}</p>
                       </PrimaryScroll>
                   </div>
               </div>
@@ -436,14 +440,14 @@ const About = () => {
                       ))}
                       </div>
                   </div>
-                  <div className=" space-y-4 block lg:hidden mt-6">
+                  {/* <div className=" space-y-4 block lg:hidden mt-6">
                       <PrimaryScroll>
                           <h2 className='  !font-heading text-heading uppercase text-xl'>{select} <span className="text-primary !font-heading">{select == 'language'?'known':'tehcnologies'}</span></h2>
                       </PrimaryScroll>
                       <PrimaryScroll>
                           <p className=' text-paragraph leading-relaxed'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam nesciunt aspernatur aliquam tempora laborum perspiciatis optio, tempore fugit magnam. Quisquam expedita minima iste deserunt voluptas?</p>
                       </PrimaryScroll>
-                  </div>
+                  </div> */}
                   <div className="lg:w-[70%] relative">
                   <AnimatePresence mode="wait">
                     {skill.length > 0 ? (
@@ -453,8 +457,10 @@ const About = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto"
-                      >
+                        className="grid pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                        // className="grid skill-scrolls pr-1 lg:pr-3 gap-5 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 lg:max-h-[19rem] overflow-y-auto"
+                        
+                        >
                         {filteredSkill.map((item, index) => (
                           <SkillBox name={item.name} icon={item.Icon} index={index} key={index} />
                         ))}

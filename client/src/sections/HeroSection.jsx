@@ -56,7 +56,7 @@ const HeroSection = () => {
           <div className="lg:w-1/2 space-y-10">
             <div className="content space-y-10">
               <h5 className=' flex items-center text-xs font-semibold gap-2 text-paragraph uppercase tracking-widest'><FaRegHandPeace className={'!text-primary text-2xl'}/> welcome my friend</h5>
-               <h1 className=' text-[56px] uppercase !font-heading  leading-sm'>hello i&lsquo;m <br /> mohammed <span className=' !font-heading  text-primary'>nowfal,</span> fullstack developer</h1>
+               <h1 className=' text-[56px] uppercase !font-heading  leading-sm'>hello i&apos;m{" "} <br /> mohammed <span className=' !font-heading  text-primary'>nowfal,</span> fullstack developer</h1>
               {/* <p className=' !mb-7 text-paragraph capitalize leading-relaxed'>I develop web, mobile, and desktop applications, integrating AI for enhanced functionality. Committed to creating user-centric solutions with the latest technologies.</p> */}
             </div>
             <div className=" flex items-center gap-6">

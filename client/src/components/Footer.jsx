@@ -3,35 +3,56 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa";
 import { LuInstagram } from "react-icons/lu";
 import { MdCopyright } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { scroller } from 'react-scroll';
+import { navlist } from '../utils/staticData';
 
 const Footer = () => {
     const socialLink = [
         {
             icon:LuInstagram,
-            path:'/'
+            path:'https://www.instagram.com/nowfie__360/'
         },
         {
             icon:FaGithub,
-            path:'/'
+            path:'https://github.com/nowfie'
         },
         {
             icon:FaLinkedin,
-            path:'/'
+            path:'https://www.linkedin.com/in/mohammed-nowfal-8a4616221/'
         },
         {
             icon:IoLogoFacebook,
-            path:'/'
+            path:'https://www.facebook.com/profile.php?id=100008449146269'
         }
 
     ]
+
+    const navigate = useNavigate();
+      const location = useLocation();
+    const currentPath = location.pathname;
+      const handleNavigation = (path, to) => {
+        if (currentPath !== path) {
+          navigate(path, { state: { scrollTo: to } });
+        } else {
+          scroller.scrollTo(to, {
+            smooth: true,
+            duration: 1000,
+            offset: -100,
+          });
+        }
+      };
+
   return (
     <footer className=' overflow-hidden relative py-12 lg:py-16'>
         <div className="main">
             <div className=" flex gap-28 justify-between flex-col lg:flex-row border-y py-20 lg:py-16 border-paragraph/20">
                 <div className=" flex flex-col lg:flex-row gap-8">
-                    {['home','about','services','portfolio','blog'].map((item,index)=>(
-                        <Link href='/' key={index} className=' uppercase text-heading font-semibold tracking-widest text-xs'>{item}</Link>
+                    {navlist.map((item,index)=>(
+                        <button 
+                        key={index}
+                        onClick={() => handleNavigation(item.path, item.to)}
+                        className=' w-fit uppercase text-heading font-semibold tracking-widest text-xs'>{item.name}</button>
                     ))}
                 </div>
                 <div className=" flex gap-8">

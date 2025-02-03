@@ -42,10 +42,11 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoIma
             details,
             statement,
             technologyStack: { paragraph, stack: { languages, frontend, backend, database, others } },
-            conclusion
+            conclusion,
+            freelance
         } = req.body;
 
-        if (!title || !category || !image || !demoImages.length || !client || !executors || !link || !dateFrom || !dateTo || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion) {
+        if (!title || !category || !image || !demoImages.length || !client || !executors || !link || !dateFrom || !dateTo || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion || !freelance) {
             return res.status(400).json({ message: 'Please provide all required fields' });
         }
 
@@ -80,7 +81,8 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoIma
                     others: parsedOthers || others
                 }
             },
-            conclusion
+            conclusion,
+            freelance
         });
 
         await newProject.save();
@@ -100,6 +102,34 @@ router.get('/', async(req, res) => {
             return res.status(404).json({ message: 'projects are not available' })
         }
         res.status(200).json({ message: 'project fetched succesfully', data: projects })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+router.get('/freelance', async(req, res) => {
+    try {
+        await dbConnect()
+
+        const projects = await ProjectModel.find({ freelance: true })
+        if (!projects.length > 0) {
+            return res.status(404).json({ message: 'freelances are not available' })
+        }
+        res.status(200).json({ message: 'freelance fetched succesfully', data: projects })
+    } catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+})
+
+router.get('/prototype', async(req, res) => {
+    try {
+        await dbConnect()
+
+        const projects = await ProjectModel.find({ freelance: false })
+        if (!projects.length > 0) {
+            return res.status(404).json({ message: 'prototypes are not available' })
+        }
+        res.status(200).json({ message: 'prototype fetched succesfully', data: projects })
     } catch (error) {
         res.status(500).json({ message: error.message })
     }

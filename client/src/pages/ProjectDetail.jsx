@@ -88,9 +88,9 @@ const ProjectPage =  () => {
         <PrimaryScroll className=" space-y-6">
             <h1 className=' !font-heading text-heading uppercase text-2xl'>{heading}</h1>
             <ul className=' space-y-1 text-paragraph font-light '>
-                {heading == 'client'?(
+                {heading == 'client' || heading == 'preview' ?(
                     value.map((item,index)=>(
-                      <li key={index} className={`${heading =='client' && index==1?' text-primary':'capitalize'}`}>{item}</li>
+                      <li key={index} className={`${(heading =='client' || heading=='preview') && index==1?' text-primary':'capitalize'}`}>{item}</li>
                   ))
                 ):heading =='date'?(
                   value.map((item,index)=>(
@@ -169,9 +169,9 @@ const ProjectPage =  () => {
         {/* <div className="space-y-10 xl:w-[75%]"> */}
         <div className="space-y-10 w-full">
             <div className="info flex flex-col lg:flex-row gap-14 lg:gap-24 !my-24">
-                <InfoBox heading={'client'} value={[data.client,data.link]}/>
+                {data.freelance == true?(<InfoBox heading={'client'} value={[data.client,data.link]}/>):(<InfoBox heading={'preview'} value={['github',data.link]}/>)}
                 <InfoBox heading={'date'}  value={[data.dateFrom,data.dateTo]}/>
-                <InfoBox heading={'executors'}  value={data.executors}/>
+                {data.freelance&&<InfoBox heading={'executors'}  value={data.executors}/>}
             </div>
             {/* <div className="sologan-info ">
                 <h1 className=' !font-heading text-4xl text-heading uppercase'>about <span className=' !font-heading text-primary'>project</span></h1>

@@ -113,11 +113,6 @@ const Project = () => {
         {/* ✅ Extra Meta Tags */}
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="theme-color" content="#ffffff" />
-
-        {/* ✅ External Fonts & Stylesheets */}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap" />
-        <link rel="stylesheet" href="https://nowfal.dev/styles.css" />
 
         {/* ✅ External Scripts (Google Analytics, etc.) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_TRACKING_ID"></script>

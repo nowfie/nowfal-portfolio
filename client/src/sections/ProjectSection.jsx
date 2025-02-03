@@ -92,9 +92,9 @@ const ProjectSection = () => {
           )}
         <PrimaryScroll scale={.98} className="conclusion flex flex-col gap-8 justify-between lg:flex-row">
             <div className="border-l-[4px] border-primary pl-5">
-              <p className=' text-paragraph leading-relaxed text-base lg:w-3/4'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime tempora rem unde excepturi ut nesciunt, doloribus mollitia atque sit vitae.</p>
+              <p className=' text-paragraph leading-relaxed text-base lg:w-3/4 capitalize'> i&apos;ve{" "} been working for several years to build a portfolio that truly reflects our diversity.</p>
             </div>
-            <Link to={'/project'} className=' bg-primary rounded-full lg:m-auto text-center w-fit font-semibold uppercase text-xs tracking-widest px-5 py-3 hover:scale-105 focus:scale-105 active:scale-105 duration-300'>view all projects</Link>
+            <Link to={'/project'} className=' bg-primary rounded-full lg:my-auto text-center w-fit font-semibold uppercase text-xs tracking-widest px-5 py-3 hover:scale-105 focus:scale-105 active:scale-105 duration-300'>view all projects</Link>
         </PrimaryScroll>
       </div>
     </section>

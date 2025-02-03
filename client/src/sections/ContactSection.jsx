@@ -65,9 +65,7 @@ const ContactSection = () => {
                     </PrimaryScroll>
                     <PrimaryScroll className="border-l-[4px] border-primary pl-5">
                         <p className="text-paragraph leading-relaxed text-base lg:w-3/4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Maxime tempora rem unde excepturi ut nesciunt, doloribus 
-                            mollitia atque sit vitae.
+                        Get in touch with us! We are excited to hear from you, whether you have a project idea or a question about our services. Our team is ready to assist you with your needs.
                         </p>
                     </PrimaryScroll>
                 </div>

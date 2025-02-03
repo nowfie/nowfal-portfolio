@@ -16,6 +16,10 @@ body::-webkit-scrollbar-thumb:hover {
   background: transparent;
 }
 
+button{
+  cursor: pointer !important;
+}
+
 @keyframes marquee {
     0% {
       transform: translateX(0);
@@ -38,6 +42,7 @@ body::-webkit-scrollbar-thumb:hover {
   /* Custom Scrollbar Styles */
 .skill-scrolls {
   overflow-y: auto;
+  
 }
 
 .skill-scrolls::-webkit-scrollbar {
