@@ -546,7 +546,7 @@ const About = () => {
           })}
         </script>
       </Helmet>
-        <Header name={'how to become a graphic designer in simple steps'} description={''}/>
+        <Header name={'Software developer dedicated to AI, problem-solving, and digital transformation'} description={''}/>
         <AboutDetailSection/>
         <SkillSection/>
         <ProfileSection/>

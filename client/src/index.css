@@ -42,8 +42,6 @@ p,ul,li{
 
   /* box shadow */
   --shadow-minimal: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
-
 }
 
 @layer component{
