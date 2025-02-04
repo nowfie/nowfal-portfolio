@@ -1,12 +1,12 @@
 {
     "name": "server",
     "version": "1.0.0",
-    "type": "module",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
-        "start": "node server.js",
-        "dev": "cross-env NODE_ENV=development node server.js",
-        "prod": "cross-env NODE_ENV=production node server.js"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node -r dotenv/config server.js",
+        "dev": "cross-env NODE_ENV=development node -r dotenv/config server.js",
+        "prod": "cross-env NODE_ENV=production node -r dotenv/config server.js"
     },
 
     "keywords": [],

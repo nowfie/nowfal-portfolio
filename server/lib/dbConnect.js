@@ -1,7 +1,9 @@
-import mongoose from "mongoose";
-import dotenv from 'dotenv';
+const mongoose = require('mongoose')
 
-dotenv.config({ path: '.env.development' });
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`
+});
+
 const dbConnect = () => {
     mongoose.connect(process.env.MONGODB_URI).then(() => {
         console.log('Connection established')
@@ -10,4 +12,4 @@ const dbConnect = () => {
     })
 }
 
-export default dbConnect
+module.exports = dbConnect

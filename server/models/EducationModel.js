@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const dbConnect = require('../lib/dbConnect')
 
-const EducationSchema = mongoose.Schema({
+dbConnect()
+const EducationSchema = new mongoose.Schema({
     duration: {
         type: String,
         required: [true, 'please provide a title'],
@@ -26,4 +28,5 @@ const EducationSchema = mongoose.Schema({
     }
 })
 
-export default mongoose.models.Education || mongoose.model('Education', EducationSchema)
+const EducationModel = mongoose.model('Education', EducationSchema)
+module.exports = EducationModel

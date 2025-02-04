@@ -1,9 +1,7 @@
-import express, { Router } from 'express'
-import dbConnect from '../lib/dbConnect.js'
-import ProjectModel from '../models/ProjectModel.js'
-import multer from 'multer';
-
-const router = Router()
+const express = require('express');
+const router = express.Router();
+const ProjectModel = require('../models/ProjectModel.js');
+const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -24,8 +22,7 @@ function safeParse(jsonString) {
 }
 
 router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoImages', maxCount: 5 }]), async(req, res) => {
-    try {
-        await dbConnect();
+    try {;
 
         const image = req.files['image'] ? req.files['image'][0].path : null;
         const demoImages = req.files['demoImages'] ? req.files['demoImages'].map(file => file.path) : [];
@@ -95,7 +92,7 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoIma
 
 router.get('/', async(req, res) => {
     try {
-        await dbConnect()
+
 
         const projects = await ProjectModel.find()
         if (!projects.length > 0) {
@@ -109,7 +106,7 @@ router.get('/', async(req, res) => {
 
 router.get('/freelance', async(req, res) => {
     try {
-        await dbConnect()
+
 
         const projects = await ProjectModel.find({ freelance: true })
         if (!projects.length > 0) {
@@ -123,7 +120,7 @@ router.get('/freelance', async(req, res) => {
 
 router.get('/prototype', async(req, res) => {
     try {
-        await dbConnect()
+
 
         const projects = await ProjectModel.find({ freelance: false })
         if (!projects.length > 0) {
@@ -137,7 +134,7 @@ router.get('/prototype', async(req, res) => {
 
 router.get('/:name', async(req, res) => {
     try {
-        await dbConnect()
+
         const project = await ProjectModel.findOne({ title: req.params.name });
         if (!project) {
             return res.status(404).json({ message: 'projects are not available' })
@@ -150,7 +147,7 @@ router.get('/:name', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {
     try {
-        await dbConnect()
+
         const deleteProject = await ProjectModel.findByIdAndDelete(req.params.id)
         if (!deleteProject) {
             return res.status(404).json({ message: 'project is not available' })
@@ -165,7 +162,7 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', async(req, res) => {
     try {
         const body = await req.body
-        await dbConnect()
+
         const updateProject = await ProjectModel.findByIdAndUpdate(
             req.params.id, body, {
                 new: true,
@@ -181,4 +178,4 @@ router.put('/:id', async(req, res) => {
     }
 })
 
-export default router
+module.exports = router;

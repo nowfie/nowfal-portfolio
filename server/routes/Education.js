@@ -1,9 +1,8 @@
-import express, { Router } from 'express'
-import dbConnect from '../lib/dbConnect.js'
-import EducationModel from '../models/EducationModel.js'
-import multer from 'multer';
+const express = require('express');
+const router = express.Router();
+const EducationModel = require('../models/EducationModel.js');
+const multer = require('multer');
 
-const router = Router()
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -17,7 +16,7 @@ const upload = multer({ storage: storage });
 
 router.post('/', upload.single('image'), async(req, res) => {
     try {
-        await dbConnect()
+
         const image = req.file.path
         const { duration, institution, degree, description } = await req.body
 
@@ -42,7 +41,7 @@ router.post('/', upload.single('image'), async(req, res) => {
 
 router.get('/', async(req, res) => {
     try {
-        await dbConnect()
+
 
         const education = await EducationModel.find()
         if (!education.length > 0) {
@@ -56,7 +55,7 @@ router.get('/', async(req, res) => {
 
 router.get('/:id', async(req, res) => {
     try {
-        await dbConnect()
+
         const education = await EducationModel.findById(req.params.id);
         if (!education) {
             return res.status(404).json({ message: 'education are not available' })
@@ -69,7 +68,7 @@ router.get('/:id', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {
     try {
-        await dbConnect()
+
         const deleteEducation = await EducationModel.findByIdAndDelete(req.params.id)
         if (!deleteEducation) {
             return res.status(404).json({ message: 'education are not available' })
@@ -84,7 +83,7 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', async(req, res) => {
     try {
         const body = await req.body
-        await dbConnect()
+
         const updateEducation = await EducationModel.findByIdAndUpdate(
             req.params.id, body, {
                 new: true,
@@ -100,4 +99,4 @@ router.put('/:id', async(req, res) => {
     }
 })
 
-export default router
+module.exports = router;

@@ -1,12 +1,11 @@
-import express, { Router } from 'express'
-import dbConnect from '../lib/dbConnect.js'
-import SkillModel from '../models/SkillModel.js'
+const express = require('express');
+const SkillModel = require('../models/SkillModel.js');
 
-const router = Router()
+const router = express.Router();
 
 router.post('/', async(req, res) => {
     try {
-        await dbConnect()
+
         const { name, iconFamily, iconName, category } = await req.body
 
         if (!name || !iconFamily || !iconName || !category) {
@@ -29,7 +28,7 @@ router.post('/', async(req, res) => {
 
 router.get('/', async(req, res) => {
     try {
-        await dbConnect()
+
 
         const Skill = await SkillModel.find()
         if (!Skill.length > 0) {
@@ -43,7 +42,7 @@ router.get('/', async(req, res) => {
 
 router.get('/:id', async(req, res) => {
     try {
-        await dbConnect()
+
         const Skill = await SkillModel.findById(req.params.id);
         if (!Skill) {
             return res.status(404).json({ message: 'Skill are not available' })
@@ -56,7 +55,7 @@ router.get('/:id', async(req, res) => {
 
 router.delete('/:id', async(req, res) => {
     try {
-        await dbConnect()
+
         const deleteSkill = await SkillModel.findByIdAndDelete(req.params.id)
         if (!deleteSkill) {
             return res.status(404).json({ message: 'Skill are not available' })
@@ -71,7 +70,7 @@ router.delete('/:id', async(req, res) => {
 router.put('/:id', async(req, res) => {
     try {
         const body = await req.body
-        await dbConnect()
+
         const updateSkill = await SkillModel.findByIdAndUpdate(
             req.params.id, body, {
                 new: true,
@@ -87,4 +86,4 @@ router.put('/:id', async(req, res) => {
     }
 })
 
-export default router
+module.exports = router

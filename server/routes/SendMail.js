@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import dotenv from 'dotenv';
+const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
 
 dotenv.config({ path: '.env.development' });
 
@@ -31,4 +31,4 @@ const mailFunction = async(name, email, service, message, phone) => {
     }
 };
 
-export default mailFunction;
+module.exports = mailFunction;

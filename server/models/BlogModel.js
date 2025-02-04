@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const dbConnect = require('../lib/dbConnect')
 
-const BlogSchema = mongoose.Schema({
+dbConnect()
+const BlogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, 'please provide a title'],
@@ -32,4 +34,5 @@ const BlogSchema = mongoose.Schema({
     }
 })
 
-export default mongoose.models.Blog || mongoose.model('Blog', BlogSchema)
+const BlogModel = mongoose.model('Blog', BlogSchema)
+module.exports = BlogModel

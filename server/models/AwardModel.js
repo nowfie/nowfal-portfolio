@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const dbConnect = require('../lib/dbConnect')
 
-const AwardSchema = mongoose.Schema({
+dbConnect()
+const AwardSchema = new mongoose.Schema({
     location: {
         type: String,
         required: [true, 'please provide a title'],
@@ -26,5 +28,6 @@ const AwardSchema = mongoose.Schema({
     }
 
 })
+const AwardModel = mongoose.model('Award', AwardSchema)
 
-export default mongoose.models.Award || mongoose.model('Award', AwardSchema)
+module.exports = AwardModel

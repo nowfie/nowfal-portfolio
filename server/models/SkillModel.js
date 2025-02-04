@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const dbConnect = require('../lib/dbConnect')
 
-const SkillSchema = mongoose.Schema({
+dbConnect()
+const SkillSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, 'Please provide a project category'],
@@ -23,4 +25,5 @@ const SkillSchema = mongoose.Schema({
     }
 })
 
-export default mongoose.models.Skill || mongoose.model('Skill', SkillSchema)
+const SkillModel = mongoose.model('Skill', SkillSchema)
+module.exports = SkillModel

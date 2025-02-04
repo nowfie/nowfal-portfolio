@@ -1,17 +1,16 @@
-import { Router } from "express";
-import dbConnect from "../lib/dbConnect.js";
-import ExperienceModel from "../models/ExperienceModel.js";
-import EducationModel from "../models/EducationModel.js";
-import ProjectModel from "../models/ProjectModel.js";
-import SkillModel from "../models/SkillModel.js";
-import AwardModel from "../models/AwardModel.js";
+const express = require('express')
+const ExperienceModel = require('../models/ExperienceModel.js')
+const EducationModel = require('../models/EducationModel.js')
+const AwardModel = require('../models/AwardModel.js')
+const SkillModel = require('../models/SkillModel.js')
+const ProjectModel = require('../models/ProjectModel.js')
 
 
-const router = Router()
+const router = express.Router()
 
 router.get('/', async(req, res) => {
     try {
-        await dbConnect()
+
         const experience = await ExperienceModel.find()
         const education = await EducationModel.find()
         const award = await AwardModel.find()
@@ -29,7 +28,6 @@ router.get('/', async(req, res) => {
 
 router.get('/record', async(req, res) => {
     try {
-        await dbConnect()
         const skills = await SkillModel.find()
         const solutions = await ProjectModel.find({ freelance: true })
         const awards = await AwardModel.find()
@@ -49,4 +47,4 @@ router.get('/record', async(req, res) => {
     }
 })
 
-export default router
+module.exports = router

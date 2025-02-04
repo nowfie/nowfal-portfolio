@@ -1,6 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
+const dbConnect = require('../lib/dbConnect')
 
-const ExperienceSchema = mongoose.Schema({
+dbConnect()
+const ExperienceSchema = new mongoose.Schema({
     duration: {
         type: String,
         required: [true, 'please provide a title'],
@@ -25,5 +27,5 @@ const ExperienceSchema = mongoose.Schema({
         required: [true, 'please provide a title'],
     }
 })
-
-export default mongoose.models.Experience || mongoose.model('Experience', ExperienceSchema)
+const ExperienceModel = mongoose.model('Experience', ExperienceSchema)
+module.exports = ExperienceModel

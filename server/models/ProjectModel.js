@@ -1,6 +1,8 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
+const dbConnect = require('../lib/dbConnect');
 
-const ProjectSchema = mongoose.Schema({
+dbConnect()
+const ProjectSchema = new mongoose.Schema({
     category: {
         type: String,
         required: [true, 'Please provide a project category'],
@@ -90,4 +92,5 @@ const ProjectSchema = mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.models.Project || mongoose.model('Project', ProjectSchema);
+const ProjectModel = mongoose.model('Project', ProjectSchema);
+module.exports = ProjectModel

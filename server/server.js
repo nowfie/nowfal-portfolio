@@ -1,17 +1,16 @@
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const dotenv = require('dotenv');
 
-import Blog from './routes/Blog.js';
-import Project from './routes/Project.js';
-import Education from './routes/Education.js';
-import Experience from './routes/Experience.js';
-import Award from './routes/Award.js';
-import About from './routes/About.js';
-import Skill from './routes/Skill.js';
-import mailFunction from './routes/SendMail.js';
+const Blog = require('./routes/Blog.js');
+const Project = require('./routes/Project.js');
+const Education = require('./routes/Education.js');
+const Experience = require('./routes/Experience.js');
+const Award = require('./routes/Award.js');
+const About = require('./routes/About.js');
+const Skill = require('./routes/Skill.js');
+const mailFunction = require('./routes/SendMail.js');
 
 dotenv.config();
 
@@ -19,11 +18,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-const __filename = fileURLToPath(
-    import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('/api', (req, res) => {
@@ -34,10 +28,10 @@ app.get('/api', (req, res) => {
     }
 });
 
-app.post('/api/mail', async(req, res) => {
+app.post('/api/mail', (req, res) => {
     const { name, email, phone, service, message } = req.body;
     try {
-        const response = await mailFunction(name, email, service, message, phone);
+        const response = mailFunction(name, email, service, message, phone);
         return res.status(response.status).json({ message: response.message });
     } catch (error) {
         return res.status(500).json({ message: error.message });
