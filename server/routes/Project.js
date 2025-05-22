@@ -17,7 +17,7 @@ function safeParse(jsonString) {
     try {
         return typeof jsonString === 'string' ? JSON.parse(jsonString) : jsonString;
     } catch (e) {
-        return null; // Return null if parsing fails
+        return null;
     }
 }
 

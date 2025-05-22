@@ -52,3 +52,11 @@ p,ul,li{
     @apply text-[42px]  xl:text-[56px] leading-tight xl:leading-sm !font-heading;
   }
 }
+
+table{
+  border-radius:100px !important;
+}
+
+th,td{
+  padding:15px !important;
+}

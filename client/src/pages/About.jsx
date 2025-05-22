@@ -166,7 +166,7 @@ const About = () => {
               </div>
                 <div className="md:w-[60%] lg:w-3/4 space-y-3">
                   <h1 className=" text-heading uppercase text-2xl !font-heading">{item.degree}</h1>
-                  <p className=' text-paragraph leading-relaxed text-base '>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects who you are and what you stand for, but words that truly land with those that read them, calling your audience in and making them want more. </p>
+                  <p className=' text-paragraph leading-relaxed text-base '>{item.description}</p>
                 </div>
             </div>
         </PrimaryScroll>
@@ -197,7 +197,7 @@ const About = () => {
               </div>
                 <div className="md:w-[60%] lg:w-3/4 space-y-3">
                   <h1 className=" text-heading uppercase text-2xl !font-heading">{item.role}</h1>
-                  <p className=' text-paragraph leading-relaxed text-base '>That is where I come in. A lover of words, a wrangler of copy. Here to create copy that not only reflects who you are and what you stand for, but words that truly land with those that read them, calling your audience in and making them want more. </p>
+                  <p className=' text-paragraph leading-relaxed text-base '>{item.description}</p>
                 </div>
             </div>
         </PrimaryScroll>
@@ -209,7 +209,7 @@ const About = () => {
       item: PropTypes.object
     }
 
-    const AwardBox = ({index,item}) =>{
+    const AchievementBox = ({index,item}) =>{
       return(
         <PrimaryScroll delay={index/10} className=" bg-boxground p-8 md:p-10 rounded-lg ">
           <div className="pl-4 border-l-4 border-primary flex flex-col md:flex-row w-full justify-between gap-2 md:items-center">
@@ -235,7 +235,7 @@ const About = () => {
       )
     }
 
-    AwardBox.propTypes ={
+    AchievementBox.propTypes ={
       index: PropTypes.number,
       item: PropTypes.object
     }
@@ -310,10 +310,10 @@ const About = () => {
           return (
             !(profile.award == 'please add the award detail')?
             ((profile.award).map((item,index)=>(
-              <AwardBox index={index} item={item} key={index}/>
+              <AchievementBox index={index} item={item} key={index}/>
             ))):(
                 <ErrorMessage>
-                  <h1 className=" capitalize">{errorProfileMessage || 'award not found'}</h1>
+                  <h1 className=" capitalize">{errorProfileMessage || 'achievement not found'}</h1>
                 </ErrorMessage>
             )
           )
@@ -338,7 +338,7 @@ const About = () => {
                   <p className=' text-paragraph leading-relaxed text-base'>{aboutData.profileData.paragraph}</p>
                 </PrimaryScroll>
                 <PrimaryScroll className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-5">
-                {['profile','education','experience','awards'].map((item,index)=>(
+                {['profile','education','experience','achievement'].map((item,index)=>(
                   <button key={index} onClick={()=>setSelect(index)} className={` transition-all  duration-300 uppercase font-semibold text-xs p-3 rounded-lg tracking-widest ${index === select?' bg-primary':'bg-boxground'}`}>{item}</button>
                 ))}
               </PrimaryScroll>

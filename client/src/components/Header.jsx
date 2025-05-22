@@ -12,7 +12,7 @@ const Header = ({name,description}) => {
         <div
         className={`h-64 design absolute top-0 left-0 w-full !z-0 ease-in-out transition-opacity duration-100`}
         style={{
-          background: 'linear-gradient(to bottom, rgb(210 210 208 / 0.1) 0%, #000 100%)',
+          background: 'linear-gradient(to bottom, rgb(210 210 208 / 0.1) 0%, transparent 100%)',
         }}
       ></div>
         <div className="main !z-30 relative  space-y-10 ">

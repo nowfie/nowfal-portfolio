@@ -10,6 +10,7 @@ const Experience = require('./routes/Experience.js');
 const Award = require('./routes/Award.js');
 const About = require('./routes/About.js');
 const Skill = require('./routes/Skill.js');
+const Review = require('./routes/Review.js');
 const mailFunction = require('./routes/SendMail.js');
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use('/api/experience', Experience);
 app.use('/api/skill', Skill);
 app.use('/api/award', Award);
 app.use('/api/about', About);
+app.use('/api/review', Review);
 
 const PORT = process.env.PORT || 8080;
 
