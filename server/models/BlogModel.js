@@ -26,7 +26,7 @@ const BlogSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: [true, 'Please provide an image URL for the blog post'],
+        // required: [true, 'Please provide an image URL for the blog post'],
     },
     date: {
         type: Date,

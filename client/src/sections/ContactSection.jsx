@@ -77,14 +77,14 @@ const ContactSection = () => {
                                     required
                                     name="name"
                                     placeholder="Enter your name"
-                                    className="!rounded-none placeholder-paragraph capitalize text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
+                                    className="!rounded-none placeholder-paragraph  text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
                                     type="text"
                                 />
                                 <input
                                     required
                                     name="email"
                                     placeholder="Enter your mail"
-                                    className="!rounded-none placeholder-paragraph capitalize text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
+                                    className="!rounded-none placeholder-paragraph  text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
                                     type="email"
                                 />
                             </div>
@@ -93,7 +93,7 @@ const ContactSection = () => {
                                     required
                                     name="phone"
                                     placeholder="Enter your phone"
-                                    className="!rounded-none placeholder-paragraph capitalize text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
+                                    className="!rounded-none placeholder-paragraph  text-paragraph border-paragraph/20 bg-transparent p-5 border-b"
                                     type="tel"
                                 />
                                 <select

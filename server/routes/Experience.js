@@ -16,10 +16,13 @@ const upload = multer({ storage: storage });
 router.post('/', upload.single('image'), async(req, res) => {
     try {
 
-        const image = req.file.path
+        let image = null
+        if (req.file){
+            image = req.file.path
+        }
         const { duration, company, role, description } = await req.body
 
-        if (!duration || !company || !role || !description || !image) {
+        if (!duration || !company || !role || !description ) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
         }
 
@@ -79,10 +82,12 @@ router.delete('/:id', async(req, res) => {
     }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id',upload.single('image'), async(req, res) => {
     try {
         const body = await req.body
-
+        if (req.file){
+            body.image = req.file.path
+        }
         const updateExperience = await ExperienceModel.findByIdAndUpdate(
             req.params.id, body, {
                 new: true,

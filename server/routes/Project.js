@@ -22,11 +22,19 @@ function safeParse(jsonString) {
 }
 
 router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoImages', maxCount: 5 }]), async(req, res) => {
-    try {;
+    try {
 
-        const image = req.files['image'] ? req.files['image'][0].path : null;
-        const demoImages = req.files['demoImages'] ? req.files['demoImages'].map(file => file.path) : [];
+        let image = null
+        let demoImages = []
+        if (req.file){
+            image = req.file.path
+        }
 
+        // const demoImages = req.files['demoImages'] ? req.files['demoImages'].map(file => file.path) : [];
+        
+        if (req.files && req.files.demoImages) {
+            demoImages = req.files.demoImages.map(file => file.path);
+        }
         const {
             title,
             description,
@@ -43,7 +51,7 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'demoIma
             freelance
         } = req.body;
 
-        if (!title || !category || !image || !demoImages.length || !client || !executors || !link || !dateFrom || !dateTo || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion || !freelance) {
+        if (!title || !category || !client || !executors || !link || !dateFrom || !dateTo || !description || !details || !statement || !paragraph || !languages || !frontend || !backend || !database || !others || !conclusion || !freelance) {
             return res.status(400).json({ message: 'Please provide all required fields' });
         }
 
@@ -159,23 +167,41 @@ router.delete('/:id', async(req, res) => {
     }
 })
 
-router.put('/:id', async(req, res) => {
-    try {
-        const body = await req.body
+router.put('/:id', upload.fields([
+  { name: 'image', maxCount: 1 },
+  { name: 'demoImages', maxCount: 5 }
+]), async (req, res) => {
+  try {
+    const body = req.body;
 
-        const updateProject = await ProjectModel.findByIdAndUpdate(
-            req.params.id, body, {
-                new: true,
-                runValidators: true
-            }
-        )
-        if (!updateProject) {
-            return res.status(404).json({ message: 'project is not available' })
-        }
-        res.status(200).json({ message: 'updated successfull', data: updateProject })
-    } catch (error) {
-        res.status(500).json({ message: error.message })
+    // Handle single image file
+    if (req.files && req.files.image && req.files.image.length > 0) {
+      body.image = req.files.image[0].path;
     }
-})
+
+    // Handle multiple demoImages
+    if (req.files && req.files.demoImages) {
+      body.demoImages = req.files.demoImages.map(file => file.path);
+    }
+
+    const updateProject = await ProjectModel.findByIdAndUpdate(
+      req.params.id,
+      body,
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!updateProject) {
+      return res.status(404).json({ message: 'Project is not available' });
+    }
+
+    res.status(200).json({ message: 'Updated successfully', data: updateProject });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 module.exports = router;

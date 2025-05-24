@@ -24,7 +24,7 @@ const EducationSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: [true, 'please provide a title'],
+        // required: [true, 'please provide a title'],
     }
 })
 

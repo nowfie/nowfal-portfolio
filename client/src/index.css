@@ -46,7 +46,7 @@ p,ul,li{
 
 @layer component{
   .main {
-    @apply w-11/12 lg:w-10/12 xl:w-9/12 mx-auto transition-all duration-300 text-heading ;
+    @apply w-11/12 lg:w-10/12 xl:w-9/12 2xl:w-[50%] mx-auto transition-all duration-300 text-heading ;
   }
   .heading{
     @apply text-[42px]  xl:text-[56px] leading-tight xl:leading-sm !font-heading;

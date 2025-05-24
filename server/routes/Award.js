@@ -15,11 +15,14 @@ const upload = multer({ storage: storage });
 
 router.post('/', upload.single('image'), async(req, res) => {
     try {
-
-        const image = req.file.path
+        let image = null
+        
+        if(req.file){
+            image = req.file.path
+        }
         const { name, description, location, date } = await req.body
 
-        if (!name || !description || !location || !date || !image) {
+        if (!name || !description || !location || !date) {
             return res.status(400).json({ message: 'Please provide all required fields (title, description, image, date)' })
         }
 
@@ -79,10 +82,15 @@ router.delete('/:id', async(req, res) => {
     }
 })
 
-router.put('/:id', async(req, res) => {
+router.put('/:id', upload.single('image'),async(req, res) => {
     try {
         const body = await req.body
-
+        
+        let image
+        if (req.file){
+            image = req.file.path
+            body.image = image
+        }
         const updateAward = await AwardModel.findByIdAndUpdate(
             req.params.id, body, {
                 new: true,
