@@ -29,10 +29,12 @@ app.get('/api', (req, res) => {
     }
 });
 
-app.post('/api/mail', (req, res) => {
+app.post('/api/mail', async(req, res) => {
     const { name, email, phone, service, message } = req.body;
     try {
-        const response = mailFunction(name, email, service, message, phone);
+        console.log(req.body)
+        const response = await mailFunction(name, email, service, message, phone);
+        console.log(response)
         return res.status(response.status).json({ message: response.message });
     } catch (error) {
         return res.status(500).json({ message: error.message });

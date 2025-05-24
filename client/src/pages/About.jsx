@@ -17,36 +17,53 @@ const About = () => {
 
   const [profile,setProfile] = useState()
   const [errorProfileMessage,setProfileErrorMessage] = useState('')
-
-    useEffect(()=>{
-      axios.get(`${import.meta.env.VITE_API_URL}/about`).then((res)=>{
-        if(res.status === 200){
-          setProfile(res.data.data)
-        }else{
-          setProfileErrorMessage(res.data.message || 'Unexpected response from server');
-        }
-      }).catch((error)=>{
-        setProfileErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
-        console.error('API Error:', error || errorProfileMessage);
-      })
-    },[errorProfileMessage])
-
-    const [skill,setSkill] = useState([])
-    const [errorSkillMessage,setSkillErrorMessage] = useState('')
+  const [record,setRecord] = useState('')
+  const [skill,setSkill] = useState([])
+  const [errorSkillMessage,setSkillErrorMessage] = useState('')
     
 
-    useEffect(()=>{
-      axios.get(`${import.meta.env.VITE_API_URL}/skill`).then((res)=>{
-        if(res.status === 200){
-          setSkill(res.data.data)
-        }else{
-          setSkillErrorMessage(res.data.message || 'Unexpected response from server');
+    useEffect(() => {
+  const fetchRecord = axios.get(`${import.meta.env.VITE_API_URL}/about/record`);
+  const fetchProfile = axios.get(`${import.meta.env.VITE_API_URL}/about`);
+  const fetchSkill = axios.get(`${import.meta.env.VITE_API_URL}/skill`);
+
+  Promise.all([fetchRecord, fetchProfile, fetchSkill])
+    .then(([recordRes, profileRes, skillRes]) => {
+      if (recordRes.status === 200) {
+        setRecord(recordRes.data.data);
+      }
+
+      if (profileRes.status === 200) {
+        setProfile(profileRes.data.data);
+        setProfileErrorMessage('');
+      } else {
+        setProfileErrorMessage(profileRes.data.message || 'Unexpected response from server');
+      }
+
+      if (skillRes.status === 200) {
+        setSkill(skillRes.data.data);
+        setSkillErrorMessage('');
+      } else {
+        setSkillErrorMessage(skillRes.data.message || 'Unexpected response from server');
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        const url = error.response.config.url;
+        if (url.includes('/about/record')) {
+          // Handle record fetch error if needed
+        } else if (url.includes('/about')) {
+          setProfileErrorMessage(error.response.data?.message || error.message);
+        } else if (url.includes('/skill')) {
+          setSkillErrorMessage(error.response.data?.message || error.message);
         }
-      }).catch((error)=>{
-        setSkillErrorMessage(error.response.data?.message || `Error: ${error.response.status} - ${error.response.statusText}`);
-        console.error('API Error:', error || errorSkillMessage);
-      })
-    },[errorSkillMessage,errorProfileMessage])
+      } else {
+        setProfileErrorMessage('Network error');
+        setSkillErrorMessage('Network error');
+      }
+    });
+}, []);
+
 
     // if(!(profile || skill) ){
     //   return(
@@ -54,23 +71,9 @@ const About = () => {
     //   )
     // }
 
-
-  const AboutDetailSection = () =>{
-    const [record,setRecord] = useState('')
-
-    useEffect(()=>{
-      axios.get(`${import.meta.env.VITE_API_URL}/about/record`).then((res)=>{
-        if (res.status === 200) {
-          setRecord(res.data.data)
-        }
-      }).catch((error)=>{
-        console.log('API error ',error)
-      })
-    },[])
-
-    const RecordRow = () => {
-      const recordData = [
-        {
+    const recordData = [
+      
+      {
           number:  typeof(record.solution) != 'number'? 27 : record.solution > 9 ? record.solution : '0'+ record.solution,
           text: 'solution delivered'
       },
@@ -82,7 +85,13 @@ const About = () => {
         number:  typeof(record.skill) != 'number'? 30 : record.skill > 9 ? record.skill : '0'+ record.skill,
         text: 'technologies known'
       },
-      ]
+    ]
+
+  const AboutDetailSection = () =>{
+
+
+    const RecordRow = () => {
+      
       return (
         <section className="  overflow-hidden pt-8">
             <div className=" grid grid-cols-1 gap-10 md:gap-20 lg:gap-3 xl:gap-5 md:grid-cols-3">

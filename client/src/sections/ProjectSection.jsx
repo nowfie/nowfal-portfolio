@@ -26,7 +26,6 @@ const ProjectSection = () => {
 
 
   const ProjectBox = ({ index, item }) => {
-    console.log(`${import.meta.env.VITE_API_URL}/${item.image}`)
     return (
       <PrimaryScroll delay={index / 10}>
         <Link
