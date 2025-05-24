@@ -5,7 +5,7 @@ require('dotenv').config({
 });
 
 const dbConnect = () => {
-    mongoose.connect('mongodb+srv://ssnowfalkdnl:lafwon1113@myportfolio.p9hc1.mongodb.net/?retryWrites=true&w=majority&appName=myportfolio').then(() => {
+    mongoose.connect(process.env.MONGODB_URI).then(() => {
         console.log('Connection established')
     }).catch((error) => {
         console.log(error)
